@@ -1,0 +1,48 @@
+.home{
+    margin-top: 50px;
+    background-image: url('../../assets/images/home-img.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 50px;
+    gap: 20px;
+   
+
+    h1{
+        color: #1f2a37;
+        
+
+    }
+    p{
+        color: #4d5761;
+    }
+    button{
+    width: 100px;
+    color: #472400;
+    background-color: #dff6e7;
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius:5px ;
+    -webkit-border-radius:5px ;
+    -moz-border-radius:5px ;
+    -ms-border-radius:5px ;
+    -o-border-radius:5px ;
+}
+}
+
+@media (max-width:768px){
+    .home{
+        text-align: center;
+        padding: 0;
+        align-items: center;
+        
+        h1 , p{
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+}

@@ -1,0 +1,75 @@
+.conference{
+    margin: 50px 0;
+    text-align: center;
+    h1{
+        color:#166a45 ;
+        span{
+            color: #111927;
+        }
+    }
+
+    .cons{
+        margin: 30px auto;
+        display: grid;
+        grid-template-columns: repeat(3 , 1fr);
+        gap: 30px;
+        max-width: 80%;
+
+        .con{
+            border: 1px solid #6c737f;
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition:.3s ease ;
+            -webkit-transition:.3s ease ;
+            -moz-transition:.3s ease ;
+            -ms-transition:.3s ease ;
+            -o-transition:.3s ease ;
+            cursor: pointer;
+
+            img{
+                width: 100px;
+            }
+            h4{
+                font-size: 35px;
+                color: #384250;
+            }
+            
+                button{
+                    width: 100px;
+                    margin: 0 auto;
+                    background-color: #dff6e7;
+                    border: none;
+                    padding: 10px 0;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -ms-border-radius: 5px;
+                    -o-border-radius: 5px;
+    }
+    &:hover{
+        background-color: #54c084;
+    }
+            }
+        }
+    }
+
+
+@media(max-width:768px){
+    .conference{
+        .cons{
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media (min-width:768px ) and (max-width:1024px){
+    .conference{
+        .cons{
+            grid-template-columns: 1fr 1fr ;
+        }
+    }
+}
