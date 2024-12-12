@@ -5,6 +5,7 @@ import About from './components/About/About'
 import Conference from './components/Conference/Conference'
 import Ended from './components/Ended/Ended'
 import Contact from './components/Contact/Contact'
+import Footer from './components/Footer/Footer'
 function App() {
   return (
     <div>
@@ -14,6 +15,7 @@ function App() {
       <Conference></Conference>
       <Ended></Ended>
       <Contact></Contact>
+      <Footer></Footer>
     </div>
   )
 }
