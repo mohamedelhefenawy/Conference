@@ -3,7 +3,7 @@ import '../About/About.css'
 import about from '../../assets/images/about-img.jpeg'
 function About() {
   return (
-    <div className='about'>
+    <div className='about' id='about'>
         <h1>تعرف <span>علينا</span></h1>
       <div className='talk'>
         <img src={about} alt="" />

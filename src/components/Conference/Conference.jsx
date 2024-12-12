@@ -3,7 +3,7 @@ import '../Conference/Conference.css'
 import photo from  '../../assets/images/menu-1.png'
 function Conference() {
   return (
-    <div className='conference'>
+    <div className='conference' id='menu'>
       <h1>المؤتمرات <span>المتاحة</span></h1>
       <div className='cons'>
 <div className='con'>

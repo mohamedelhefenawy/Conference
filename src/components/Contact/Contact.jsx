@@ -2,7 +2,7 @@ import React from 'react'
 import '../Contact/Contact.css'
 function Contact() {
   return (
-    <div className='contact'>
+    <div className='contact' id='contact'>
       <h1>تواصل <span>معنا</span></h1>
       <div className='row'>
       <iframe

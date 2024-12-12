@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react'
 import logo from '../../assets/images/logo.png'
-import { NavLink , Link } from "react-router-dom";
+import { NavLink , Link  } from "react-router-dom";
 import search_icon from '../../assets/images/search_icon.png'
 import menu_icon from '../../assets/images/menu_icon.png'
 import close_icon  from '../../assets/images/cross_icon.png'
 import profile from '../../assets/images/profile_icon.png'
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import '../Navbar/Navbar.css'
 
 
@@ -29,6 +30,7 @@ const [proflie_line , setproflie] = useState(false)
 
 
   return (
+    
     <div className='navbar' >
       <div className='icon'>
             <img src={menu_icon} alt="" className='menu' onClick={()=>{open_menu();setsearch(false);setproflie(false)} } />
@@ -53,17 +55,17 @@ const [proflie_line , setproflie] = useState(false)
           </div>
       <nav ref={menuref} >
                 <img src={close_icon} alt=""  onClick={close_menu}/>
-                <a href="#home" onClick={()=>useline('#home') } className={line ==='#home' ? 'active':''}>الصفحة الرئيسية
-                </a>
-                <a href="#about"  onClick={()=>useline('#about') } className={line ==='#about' ? 'active':''}>تعرف علينا
-                </a>
-                <a href="#menu"  onClick={()=>useline('#menu')} className={line ==='#menu' ? 'active':''}>القائمة
-                </a>
-                <a href="#contact"  onClick={()=>useline('#contact') }className={line ==='#contact' ? 'active':''}>تواصل معنا
-                </a>
+                <AnchorLink href="#home" onClick={()=>useline('#home') } className={line ==='#home' ? 'active':''}>الصفحة الرئيسية
+                </AnchorLink>
+                <AnchorLink href="#about"  onClick={()=>useline('#about') } className={line ==='#about' ? 'active':''}>تعرف علينا
+                </AnchorLink>
+                <AnchorLink href="#menu"  onClick={()=>useline('#menu')} className={line ==='#menu' ? 'active':''}>القائمة
+                </AnchorLink>
+                <AnchorLink href="#contact"  onClick={()=>useline('#contact') }className={line ==='#contact' ? 'active':''}>تواصل معنا
+                </AnchorLink>
           </nav>
           
-          <img src={logo} alt="" />
+          <AnchorLink href='#home' onClick={()=>useline('#home') }className={line ==='#home' ? 'active':''}><img src={logo} alt="" /></AnchorLink>
 
         
     </div>
