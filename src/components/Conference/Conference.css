@@ -1,75 +1,97 @@
-.conference{
+.conference {
     margin: 50px 0;
     text-align: center;
-    h1{
-        color:#166a45 ;
-        span{
+
+    h1 {
+        color: #166a45;
+        span {
             color: #111927;
         }
     }
 
-    .cons{
+    .cons {
         margin: 30px auto;
         display: grid;
-        grid-template-columns: repeat(3 , 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 30px;
         max-width: 80%;
 
-        .con{
-            border: 1px solid #6c737f;
-            padding: 30px 15px;
-            display: flex;
+        .con {
+            border: 1px solid #54c08a;
+            /*padding: 30px 15px;
+            */display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            transition:.3s ease ;
-            -webkit-transition:.3s ease ;
-            -moz-transition:.3s ease ;
-            -ms-transition:.3s ease ;
-            -o-transition:.3s ease ;
+            align-items: start;
+            justify-content: space-between;
+            gap: 10px;
             cursor: pointer;
-
-            img{
-                width: 100px;
-            }
-            h4{
-                font-size: 35px;
-                color: #384250;
-            }
+            min-height: 60vh;
+            border-radius: 26px;
+            -webkit-border-radius: 26px;
+            -moz-border-radius: 26px;
+            -ms-border-radius: 26px;
+            -o-border-radius: 26px;
+            transition: .3s ease;
             
-                button{
-                    width: 100px;
-                    margin: 0 auto;
-                    background-color: #dff6e7;
-                    border: none;
-                    padding: 10px 0;
-                    cursor: pointer;
-                    border-radius: 5px;
-                    -webkit-border-radius: 5px;
-                    -moz-border-radius: 5px;
-                    -ms-border-radius: 5px;
-                    -o-border-radius: 5px;
-    }
-    &:hover{
-        background-color: #54c084;
-    }
+            -webkit-transition: .3s ease;
+            -moz-transition: .3s ease;
+            -ms-transition: .3s ease;
+            -o-transition: .3s ease;
+            .ended{
+                min-height: 100%;
+                border-radius: 24px;
+                -webkit-border-radius: 24px;
+                -moz-border-radius: 24px;
+                -ms-border-radius: 24px;
+                -o-border-radius: 24px;
+            }
+img{
+                min-height:40vh ;
+                width: 100%;
+                border-radius: 24px;
+                -webkit-border-radius: 24px;
+                -moz-border-radius: 24px;
+                -ms-border-radius: 24px;
+                -o-border-radius: 24px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+}
+            h4{
+                font-size: 25px;
+                color: #384250;
+                padding: 0 30px 0 0;
+            }
+
+            button {
+                width: 100px;
+                margin: 0 30px 15px 0;
+                background-color: #dff6e7;
+                border: none;
+                padding: 10px 0;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            &:hover {
+               background-color: #54c08a;
             }
         }
     }
+}
 
-
-@media(max-width:768px){
-    .conference{
-        .cons{
+@media (max-width: 768px) {
+    .conference {
+        .cons {
             grid-template-columns: 1fr;
         }
     }
 }
 
-@media (min-width:768px ) and (max-width:1024px){
-    .conference{
-        .cons{
-            grid-template-columns: 1fr 1fr ;
+@media (min-width: 768px) and (max-width: 1024px) {
+    .conference {
+        .cons {
+            grid-template-columns: 1fr 1fr;
         }
     }
 }

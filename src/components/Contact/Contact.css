@@ -17,7 +17,14 @@
         .map{
             min-width: 50%;
             height: 50vh;
-        }
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+}
        
 
         .name{
@@ -31,11 +38,17 @@
             min-width: 50%;
             height: 50vh;
             transition: .3s ease;
-            
             -webkit-transition: .3s ease;
             -moz-transition: .3s ease;
             -ms-transition: .3s ease;
             -o-transition: .3s ease;
+            border-radius: 10px ;
+            -webkit-border-radius: 10px ;
+            -moz-border-radius: 10px ;
+            -ms-border-radius: 10px ;
+            -o-border-radius: 10px ;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
 
             &:hover{
                 background-color: #54c084;
@@ -55,6 +68,7 @@
                 -o-border-radius: 10px;
                 color: #384250;
                 font-size: 20px;
+                border: 2px solid #54c084;
 }
 button{
     width: 100px;
