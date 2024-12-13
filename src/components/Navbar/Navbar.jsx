@@ -11,9 +11,9 @@ import '../Navbar/Navbar.css'
 
 
 
-function Navbar() {
+function Navbar({line , useline}) {
 
-  const [line , useline] = useState('#home')
+  // const [line , useline] = useState('#home')
 
   const menuref = useRef()
 

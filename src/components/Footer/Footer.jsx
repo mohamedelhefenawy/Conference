@@ -3,9 +3,9 @@ import { useState } from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import '../Footer/Footer.css'
 
-function Footer() {
+function Footer({line , useline}) {
 
-  const [line , useline] = useState('#home')
+  // const [line , useline] = useState('#home')
 
   return (
     <div className='footer'>
