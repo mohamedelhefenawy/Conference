@@ -17,11 +17,13 @@
         
 
         img{
-            width: 500px;
+            max-width: 100%;
+            width: 35%;
             height: 40vh;
         }
         .words{
-            width: 500px;
+            max-width: 100%;
+            width: 35%;
             height: 40vh;
             background-color: #b8eacb;
             display: flex;
@@ -56,6 +58,14 @@
     .about{
         .talk{
             flex-direction: column;
+
+            img{
+                width: 90%;
+
+            }
+            .words{
+                width: 90%;
+            }
         }
     }
 }
