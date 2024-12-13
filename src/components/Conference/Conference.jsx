@@ -43,7 +43,7 @@ function Conference() {
     ],
   };
   return (
-    <div className='conference'>
+    <div className='conference' id = 'menu'>
       <h1>المؤتمرات <span>المتاحة</span></h1>
       <Slider {...settings}>
     <div className='con'>
