@@ -1,75 +1,72 @@
-import React, { useRef, useState } from 'react'
-import logo from '../../assets/images/logo.png'
-import { NavLink , Link  } from "react-router-dom";
-import search_icon from '../../assets/images/search_icon.png'
-import menu_icon from '../../assets/images/menu_icon.png'
-import close_icon  from '../../assets/images/cross_icon.png'
-import profile from '../../assets/images/profile_icon.png'
+import React, { useRef, useState } from 'react';
+import menu_icon from '../../assets/images/menu_icon.png';
+import close_icon from '../../assets/images/cross_icon.png';
+import logo from '../../assets/images/logo.png';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import '../Navbar/Navbar.css'
 
+function Navbar() {
+  const menuRef = useRef();
 
+  const openMenu = () => {
+    menuRef.current.style.right = '0';
+  };
 
-
-function Navbar({line , useline}) {
-
-  // const [line , useline] = useState('#home')
-
-  const menuref = useRef()
-
-const open_menu = ()=>{
-  menuref.current.style.right = '0'
-}
-const close_menu = ()=>{
-  menuref.current.style.right = '-450px'
-}
-
-const [search_line , setsearch] = useState(false)
-const [proflie_line , setproflie] = useState(false)
-
-
+  const closeMenu = () => {
+    menuRef.current.style.right = '-100%';
+  };
 
   return (
-    
-    <div className='navbar z-[10]' >
-      <div className='icon'>
-            <img src={menu_icon} alt="" className='menu' onClick={()=>{open_menu();setsearch(false);setproflie(false)} } />
-            <div className='search'>
-            <img src={search_icon} alt="" onClick={() => {setsearch(!search_line);setproflie(false)}} />
-            {search_line && (
-              <div className="input-container">
-                <img src={search_icon} alt="search icon" className="input-icon" />
-                <input type="text" placeholder='ابحث عن المؤتمر الذي تريده' />
-              </div>
-            )}
-          </div>
-
-          <div className="profile">
-          <img src={profile} alt="" onClick={()=>{setproflie(!proflie_line) ; setsearch(false)}} />
-            {proflie_line &&(<div className="dropdown-content">
-                <p>حسابي</p>
-                <p>المؤتمرات المشارك فيها</p>
-                <p>تسجيل الخروج</p>
-            </div>)}
+    <div className="relative">
+      {/* Navbar for Large Screens */}
+      <div className="hidden md:flex justify-between items-center px-8 py-4 bg-green-200 shadow-lg">
+        <div className="flex items-center gap-4">
+          <img src={logo} alt="Logo" className="w-20" />
         </div>
-          </div>
-      <nav ref={menuref} >
-                <img src={close_icon} alt=""  onClick={close_menu}/>
-                <AnchorLink href="#home" onClick={()=>useline('#home') } className={line ==='#home' ? 'active':''}>الصفحة الرئيسية
-                </AnchorLink>
-                <AnchorLink href="#about"  onClick={()=>useline('#about') } className={line ==='#about' ? 'active':''}>تعرف علينا
-                </AnchorLink>
-                <AnchorLink href="#menu"  onClick={()=>useline('#menu')} className={line ==='#menu' ? 'active':''}>القائمة
-                </AnchorLink>
-                <AnchorLink href="#contact"  onClick={()=>useline('#contact') }className={line ==='#contact' ? 'active':''}>تواصل معنا
-                </AnchorLink>
-          </nav>
-          
-          <AnchorLink href='#home' onClick={()=>useline('#home') }className={line ==='#home' ? 'active':''}><img src={logo} alt="" /></AnchorLink>
+        <nav className="flex gap-8 text-lg">
+          <AnchorLink href="#home" className="text-gray-800 hover:text-green-600">الصفحة الرئيسية</AnchorLink>
+          <AnchorLink href="#about" className="text-gray-800 hover:text-green-600">تعرف علينا</AnchorLink>
+          <AnchorLink href="#menu" className="text-gray-800 hover:text-green-600">القائمة</AnchorLink>
+          <AnchorLink href="#contact" className="text-gray-800 hover:text-green-600">تواصل معنا</AnchorLink>
+        </nav>
+      </div>
 
-        
+      {/* Navbar for Mobile Screens */}
+      <div className="flex md:hidden justify-between items-center px-4 py-4 bg-green-200 shadow-lg">
+        <img src={logo} alt="Logo" className="w-10" />
+        <img
+          src={menu_icon}
+          alt="Menu Icon"
+          className="w-8 cursor-pointer"
+          onClick={openMenu}
+        />
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        ref={menuRef}
+        className="fixed top-0 right-[-100%] w-[70%] h-full bg-green-200 shadow-lg flex flex-col items-end p-6 gap-6 transition-all duration-300"
+      >
+        <img
+          src={close_icon}
+          alt="Close Icon"
+          className="w-6 cursor-pointer"
+          onClick={closeMenu}
+        />
+        <AnchorLink href="#home" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+          الصفحة الرئيسية
+        </AnchorLink>
+        <AnchorLink href="#about" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+          تعرف علينا
+        </AnchorLink>
+        <AnchorLink href="#menu" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+          القائمة
+        </AnchorLink>
+        <AnchorLink href="#contact" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+          تواصل معنا
+        </AnchorLink>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

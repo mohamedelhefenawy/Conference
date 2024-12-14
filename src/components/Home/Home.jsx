@@ -45,10 +45,10 @@ function Home() {
       />
     
       {/* Centered Content */}
-      <div className="text-center text-white space-y-5 z-10">
+      <div className="text-center text-white space-y-5 z-10 h-full flex flex-col  justify-center">
         <h1 className="text-3xl md:text-4xl font-bold">{home.title}</h1>
         <p className="text-lg md:text-xl">{home.sub_title}</p>
-        <button className="w-24 text-[#472400] bg-[#dff6e7] py-2 cursor-pointer rounded">
+        <button className="w-24 text-[#472400] bg-[#dff6e7] py-2 cursor-pointer rounded self-center">
           احجز الان
         </button>
       </div>
