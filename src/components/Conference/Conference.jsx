@@ -50,27 +50,33 @@ function Conference() {
   };
 
   return (
-    <div className='text-center' id="menu">
-<h1 className="text-[#166a45] font-bold my-10 text-4xl ">
-    المؤتمرات <span className="text-[#111927]">المتاحة</span>
-</h1>
+    <div className='text-center z-[1]' id="menu">
+      <h1 className="text-[#166a45] font-bold my-10 text-4xl ">
+        المؤتمرات <span className="text-[#111927]">المتاحة</span>
+      </h1>
       <Slider {...settings}>
         {conferences.map((conference) => (
           <div
-            className="w-[90%] mx-auto p-4 cursor-pointer border border-green-400 rounded-2xl transition-all hover:bg-green-400"
+            className="flex justify-center w-full z-[1] " 
             key={conference.id}
           >
-            <img
-              className="w-fit h-fit rounded-t-2xl"
-              src={conference.image}
-              alt={conference.title}
-            />
-            <h4 className="text-lg font-medium text-gray-700 my-4">
-              {conference.title}
-            </h4>
-            <button className="w-32 bg-green-100 hover:bg-green-200 text-gray-800 py-2 rounded transition-all">
-              احجز الان
-            </button>
+            <div
+              className=" w-[90%]  mx-auto p-4 cursor-pointer border border-green-400 rounded-2xl transition-all hover:bg-green-400 z-[1]"
+            >
+              <img
+                className="w-full h-auto rounded-xl "
+                src={conference.image}
+                alt={conference.title}
+              />
+              <div className="my-10">
+              <h4 className="text-lg font-medium text-gray-700 my-4">
+                {conference.title}
+              </h4>
+              <button className="w-32 bg-green-100 hover:bg-green-200 text-gray-800 py-2 rounded transition-all">
+                احجز الان
+              </button>
+              </div>
+            </div>
           </div>
         ))}
       </Slider>

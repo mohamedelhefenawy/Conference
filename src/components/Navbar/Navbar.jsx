@@ -31,7 +31,7 @@ const [proflie_line , setproflie] = useState(false)
 
   return (
     
-    <div className='navbar' >
+    <div className='navbar z-[10]' >
       <div className='icon'>
             <img src={menu_icon} alt="" className='menu' onClick={()=>{open_menu();setsearch(false);setproflie(false)} } />
             <div className='search'>
