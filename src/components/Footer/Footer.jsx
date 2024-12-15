@@ -6,9 +6,11 @@ function Footer({ line, useline }) {
   return (
     <div className="max-w-[80%] mx-auto mt-24 flex flex-col items-center gap-12">
       <div className="flex justify-center flex-col md:flex-row gap-8" dir="ltr">
-        <div className="icon border border-[#384250] p-4 rounded-full
+        <div
+          className="icon border border-[#384250] p-4 rounded-full
         transition duration-300 ease-in-out cursor-pointer 
-        hover:bg-[#b8eacb] hover: hover:border-[#b8eacb]">
+        hover:bg-[#b8eacb] hover: hover:border-[#b8eacb]"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -92,8 +94,9 @@ function Footer({ line, useline }) {
       </div>
 
       <div className="text-4xl text-center mb-2 capitalize">
-        created by <span className="font-bold text-[#14573a]">Tahany</span> |
-        all rights reserved
+        تم الإنشاء بواسطة{" "}
+        <span className="font-bold text-[#14573a]">تهاني</span> | جميع الحقوق
+        محفوظة
       </div>
     </div>
   );
