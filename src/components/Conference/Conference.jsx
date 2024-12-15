@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import photo from "../../assets/images/blog-1.jpeg";
 
 function Conference() {
+  const sliderRef = useRef(null);
+
   // Array of conference data
   const conferences = [
     { id: 1, title: "مؤتمر الجمعية", image: photo },
@@ -23,7 +25,7 @@ function Conference() {
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 3000,
-    arrows: false, // Disable default arrows since we will add custom ones
+    arrows: false, // Disable default arrows as we are using custom arrows
     responsive: [
       {
         breakpoint: 1280,
@@ -50,24 +52,33 @@ function Conference() {
   };
 
   return (
-    <div className="text-center z-[1]" id="menu">
+    <div className="relative text-center z-[1]" id="menu">
       <h1 className="text-[#166a45] font-bold my-10 text-4xl ">
         المؤتمرات <span className="text-[#111927]">المتاحة</span>
       </h1>
-      <div className="">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#166a45" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"></path></svg>
-      {/* Slider Component */}
-      <Slider {...settings}>
+
+      {/* Custom Left Arrow */}
+      <div className="absolute top-[50%] left-0 z-[50] text-2xl text-green-600 cursor-pointer">
+        <button
+          onClick={() => sliderRef.current.slickPrev()} // Use the slickPrev method directly
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#166a45" viewBox="0 0 256 256">
+            <path d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <Slider ref={sliderRef} {...settings}>
         {conferences.map((conference) => (
           <div className="flex justify-center w-full z-[1]" key={conference.id}>
-            <div className="w-[90%] mx-auto p-4 cursor-pointer border border-green-400 rounded-2xl transition-all hover:bg-green-400 z-[1]">
+            <div className="w-[80%] flex flex-col mx-auto p-4 cursor-pointer border border-green-400 rounded-2xl transition-all hover:bg-green-400  z-[1]">
               <img
                 className="w-full h-auto rounded-xl"
                 src={conference.image}
                 alt={conference.title}
               />
-              <div className="my-10">
-                <h4 className="text-lg font-medium text-gray-700 my-4">
+              <div className="my-10 self-end">
+                <h4 className="text-lg font-medium text-gray-700 my-4 bg-green-400 rounded-2xl p-1">
                   {conference.title}
                 </h4>
                 <button className="w-32 bg-green-100 hover:bg-green-200 text-gray-800 py-2 rounded transition-all">
@@ -78,11 +89,17 @@ function Conference() {
           </div>
         ))}
       </Slider>
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#166a45" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"></path></svg>
 
+      {/* Custom Right Arrow */}
+      <div className="absolute top-[50%] right-0 z-[50] text-2xl text-green-600 cursor-pointer">
+        <button
+          onClick={() => sliderRef.current.slickNext()} // Use the slickNext method directly
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#166a45" viewBox="0 0 256 256">
+            <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+          </svg>
+        </button>
       </div>
-
-  
     </div>
   );
 }
