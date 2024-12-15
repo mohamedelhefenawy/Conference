@@ -1,18 +1,18 @@
-import React, { useRef, useState } from 'react';
-import menu_icon from '../../assets/images/menu_icon.png';
-import close_icon from '../../assets/images/cross_icon.png';
-import logo from '../../assets/images/logo.png';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+import React, { useRef, useState } from "react";
+import menu_icon from "../../assets/images/menu_icon.png";
+import close_icon from "../../assets/images/cross_icon.png";
+import logo from "../../assets/images/logo.png";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 function Navbar() {
   const menuRef = useRef();
 
   const openMenu = () => {
-    menuRef.current.style.right = '0';
+    menuRef.current.style.right = "0";
   };
 
   const closeMenu = () => {
-    menuRef.current.style.right = '-100%';
+    menuRef.current.style.right = "-100%";
   };
 
   return (
@@ -23,10 +23,30 @@ function Navbar() {
           <img src={logo} alt="Logo" className="w-20" />
         </div>
         <nav className="flex gap-8 text-lg">
-          <AnchorLink href="#home" className="text-gray-800 hover:text-green-600">الصفحة الرئيسية</AnchorLink>
-          <AnchorLink href="#about" className="text-gray-800 hover:text-green-600">تعرف علينا</AnchorLink>
-          <AnchorLink href="#menu" className="text-gray-800 hover:text-green-600">القائمة</AnchorLink>
-          <AnchorLink href="#contact" className="text-gray-800 hover:text-green-600">تواصل معنا</AnchorLink>
+          <AnchorLink
+            href="#home"
+            className="text-gray-800 hover:text-green-600"
+          >
+            الصفحة الرئيسية
+          </AnchorLink>
+          <AnchorLink
+            href="#about"
+            className="text-gray-800 hover:text-green-600"
+          >
+            تعرف علينا
+          </AnchorLink>
+          <AnchorLink
+            href="#menu"
+            className="text-gray-800 hover:text-green-600"
+          >
+            القائمة
+          </AnchorLink>
+          <AnchorLink
+            href="#contact"
+            className="text-gray-800 hover:text-green-600"
+          >
+            تواصل معنا
+          </AnchorLink>
         </nav>
       </div>
 
@@ -44,7 +64,7 @@ function Navbar() {
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className="fixed top-0 right-[-100%] w-[70%] h-full bg-green-200 shadow-lg flex flex-col items-end p-6 gap-6 transition-all duration-300"
+        className="fixed z-50 top-0 right-[-100%] w-[70%] h-full bg-green-200 shadow-lg flex flex-col items-end p-6 gap-6 transition-all duration-300"
       >
         <img
           src={close_icon}
@@ -52,16 +72,32 @@ function Navbar() {
           className="w-6 cursor-pointer"
           onClick={closeMenu}
         />
-        <AnchorLink href="#home" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+        <AnchorLink
+          href="#home"
+          className="text-gray-800 hover:text-green-600 text-lg"
+          onClick={closeMenu}
+        >
           الصفحة الرئيسية
         </AnchorLink>
-        <AnchorLink href="#about" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+        <AnchorLink
+          href="#about"
+          className="text-gray-800 hover:text-green-600 text-lg"
+          onClick={closeMenu}
+        >
           تعرف علينا
         </AnchorLink>
-        <AnchorLink href="#menu" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+        <AnchorLink
+          href="#menu"
+          className="text-gray-800 hover:text-green-600 text-lg"
+          onClick={closeMenu}
+        >
           القائمة
         </AnchorLink>
-        <AnchorLink href="#contact" className="text-gray-800 hover:text-green-600 text-lg" onClick={closeMenu}>
+        <AnchorLink
+          href="#contact"
+          className="text-gray-800 hover:text-green-600 text-lg"
+          onClick={closeMenu}
+        >
           تواصل معنا
         </AnchorLink>
       </div>
