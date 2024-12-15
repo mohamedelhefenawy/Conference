@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,6 +16,22 @@ function Conference() {
     { id: 5, title: "مؤتمر الجمعية", image: photo },
     { id: 6, title: "مؤتمر الجمعية", image: photo },
   ];
+
+  // State to manage popup visibility
+  const [pop, setPop] = useState(false);
+  const [selectedConference, setSelectedConference] = useState(null);
+
+  // Open the popup with the selected conference
+  const openPopup = (conference) => {
+    setSelectedConference(conference);
+    setPop(true);
+  };
+
+  // Close the popup
+  const closePopup = () => {
+    setPop(false);
+    setSelectedConference(null);
+  };
 
   const settings = {
     dots: true,
@@ -81,8 +97,11 @@ function Conference() {
                 <h4 className="text-lg font-medium text-gray-700 my-4 bg-green-400 rounded-2xl p-1">
                   {conference.title}
                 </h4>
-                <button className="w-32 bg-green-100 hover:bg-green-200 text-gray-800 py-2 rounded transition-all">
-                  احجز الان
+                <button
+                  onClick={()=> openPopup(conference)} // Open the popup when clicked
+                  className="w-32 bg-green-100 hover:bg-green-200 text-gray-800 py-2 rounded transition-all"
+                >
+                  عرض التفاصيل
                 </button>
               </div>
             </div>
@@ -100,6 +119,32 @@ function Conference() {
           </svg>
         </button>
       </div>
+
+      {/* Popup Modal */}
+      {pop && (
+        <div className="fixed inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg">
+            <h2 className="text-2xl font-bold text-green-700 mb-4">
+              تفاصيل المؤتمر
+            </h2>
+            <img
+              className="w-full h-auto rounded-xl mb-4"
+              src={selectedConference.image}
+              alt={selectedConference.title}
+            />
+            <h4 className="text-lg text-gray-700 mb-4">{selectedConference.title}</h4>
+            <p className="text-gray-600 mb-6">
+              تفاصيل إضافية حول المؤتمر يمكن أن تذهب هنا.
+            </p>
+            <button
+              onClick={closePopup}
+              className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition"
+            >
+              إغلاق
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
