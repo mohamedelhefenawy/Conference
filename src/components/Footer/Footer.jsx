@@ -40,7 +40,7 @@ function Footer({ line, useline }) {
       
       
       <div className="text-4xl text-center mb-2 capitalize">
-  created by <span className="font-bold text-[#14573a]">Cowdly</span> | all rights reserved
+  created by <span className="font-bold text-[#14573a]">Tahany</span> | all rights reserved
 </div>
       
     </div>
