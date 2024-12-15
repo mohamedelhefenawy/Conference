@@ -4,8 +4,9 @@ import close_icon from "../../assets/images/cross_icon.png";
 import logo from "../../assets/images/logo.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { MagnifyingGlass, User } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+export default function Navbar() {
   const menuRef = useRef();
 
   const openMenu = () => {
@@ -15,6 +16,8 @@ function Navbar() {
   const closeMenu = () => {
     menuRef.current.style.right = "-100%";
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="relative">
@@ -50,10 +53,17 @@ function Navbar() {
           </AnchorLink>
         </nav>
         <div className="flex justify-center items-center gap-3">
-          <button>
+          <button
+            className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
+            hover:text-white duration-100 ease-linear"
+            onClick={() => navigate("/login")}
+          >
             <User size={25} />
           </button>
-          <button>
+          <button
+            className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
+            hover:text-white duration-100 ease-linear"
+          >
             <MagnifyingGlass size={25} />
           </button>
         </div>
@@ -113,5 +123,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;
