@@ -3,6 +3,7 @@ import menu_icon from "../../assets/images/menu_icon.png";
 import close_icon from "../../assets/images/cross_icon.png";
 import logo from "../../assets/images/logo.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { MagnifyingGlass, User } from "@phosphor-icons/react";
 
 function Navbar() {
   const menuRef = useRef();
@@ -18,7 +19,7 @@ function Navbar() {
   return (
     <div className="relative">
       {/* Navbar for Large Screens */}
-      <div className="hidden md:flex justify-between items-center px-8 py-4 bg-green-200 shadow-lg">
+      <div className="hidden fixed w-full top-0 z-40 md:flex justify-between items-center px-20 py-4 bg-green-200 shadow-lg">
         <div className="flex items-center gap-4">
           <img src={logo} alt="Logo" className="w-20" />
         </div>
@@ -48,10 +49,18 @@ function Navbar() {
             تواصل معنا
           </AnchorLink>
         </nav>
+        <div className="flex justify-center items-center gap-3">
+          <button>
+            <User size={25} />
+          </button>
+          <button>
+            <MagnifyingGlass size={25} />
+          </button>
+        </div>
       </div>
 
       {/* Navbar for Mobile Screens */}
-      <div className="flex md:hidden justify-between items-center px-4 py-4 bg-green-200 shadow-lg">
+      <div className="flex fixed w-full z-50 top-0 md:hidden justify-between items-center px-4 py-4 bg-green-200 shadow-lg">
         <img src={logo} alt="Logo" className="w-10" />
         <img
           src={menu_icon}

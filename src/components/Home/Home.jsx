@@ -10,7 +10,7 @@ function Home() {
     {
       id: 1,
       image: home_2,
-      title: "بوابة المؤتمرات والأنشطة القافية",
+      title: "بوابة المؤتمرات والأنشطة الثقافية",
       sub_title:
         "وجهة للتعلم والنمو تقدم فعاليات تعزز المعرفة وتوفر فرصا للتطوير الشخصي والمهني",
     },
@@ -48,9 +48,6 @@ function Home() {
           <div className="text-center text-white space-y-5 z-20 h-full flex flex-col justify-center">
             <h1 className="text-3xl md:text-4xl font-bold">{home.title}</h1>
             <p className="text-lg md:text-xl">{home.sub_title}</p>
-            <button className="w-24 text-[#472400] bg-[#dff6e7] py-2 cursor-pointer rounded self-center">
-              دخول
-            </button>
           </div>
         </div>
       ))}
