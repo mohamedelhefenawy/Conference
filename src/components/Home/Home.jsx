@@ -37,15 +37,15 @@ function Home() {
           key={home.id}
         >
           {/* Background Image */}
-          <div className="absolute inset-0 bg-black bg-opacity-40 z-10 flex items-center justify-center"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-40 -z-10 flex items-center justify-center"></div>
           <img
             src={home.image}
             alt="Home Background"
-            className="w-full h-full object-cover absolute top-0 left-0 -z-10"
+            className="w-full h-full object-cover absolute top-0 left-0 -z-20"
           />
 
           {/* Centered Content */}
-          <div className="text-center text-white space-y-5 z-20 h-full flex flex-col justify-center">
+          <div className="text-center text-white space-y-5 z-0 h-full flex flex-col justify-center">
             <h1 className="text-3xl md:text-4xl font-bold">{home.title}</h1>
             <p className="text-lg md:text-xl">{home.sub_title}</p>
           </div>
