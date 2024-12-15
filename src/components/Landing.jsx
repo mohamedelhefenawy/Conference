@@ -10,7 +10,7 @@ function Landing() {
   const [line, useline] = useState("#home");
 
   return (
-    <div>
+    <div className="flex flex-col gap-10 justify-center">
       <Navbar line={line} useline={useline}></Navbar>
       <Home></Home>
       <About></About>

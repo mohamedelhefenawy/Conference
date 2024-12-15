@@ -32,7 +32,7 @@ function Home() {
     <>
       {images.map((home) => (
         <div
-          className="home mt-12 w-full h-[90vh] relative flex justify-center items-center"
+          className="home w-full h-[90vh] relative flex justify-center items-center"
           id="home"
           key={home.id}
         >
