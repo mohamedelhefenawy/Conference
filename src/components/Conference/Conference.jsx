@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import photo from "../../assets/images/blog-1.jpeg";
+import photo from "../../assets/images/home.jpeg";
 import {
   ArrowCircleLeft,
   ArrowCircleRight,
@@ -130,7 +130,7 @@ function Conference() {
               تفاصيل المؤتمر
             </h2>
             <img
-              className="w-full h-auto rounded-xl mb-4"
+              className="w-full h-96 rounded-xl mb-4"
               src={selectedConference.image}
               alt={selectedConference.title}
             />

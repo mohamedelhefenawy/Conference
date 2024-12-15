@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import menu_icon from "../../assets/images/menu_icon.png";
 import logo from "../../assets/images/logo.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { List, MagnifyingGlass, User, X } from "@phosphor-icons/react";
+import { List, MagnifyingGlass, User, X, XCircle } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [pop, setPop] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
 
@@ -14,6 +15,15 @@ export default function Navbar() {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsMenuOpen(false);
     }
+  };
+
+  const openPopup = (conference) => {
+    setPop(true);
+  };
+
+  // Close the popup
+  const closePopup = () => {
+    setPop(false);
   };
 
   useEffect(() => {
@@ -26,32 +36,50 @@ export default function Navbar() {
   return (
     <div className="relative">
       {/* Navbar for Large Screens */}
-      <div className="hidden fixed w-full top-0 z-40 md:flex justify-between items-center px-20 py-4 bg-green-200 shadow-lg">
+      <div className="hidden fixed w-full top-0 z-40 md:flex justify-between items-center px-20 py-0 bg-gray-100 shadow-lg">
         <div className="flex items-center gap-4">
           <img src={logo} alt="Logo" className="w-20" />
         </div>
-        <nav className="flex gap-8 text-lg">
+        <nav className="flex gap-3 text-lg">
           <AnchorLink
             href="#home"
-            className="text-gray-800 hover:text-green-600"
+            className="text-gray-800 hover:text-green-600 text-lg"
+            onClick={() => setIsMenuOpen(false)}
           >
             الصفحة الرئيسية
           </AnchorLink>
           <AnchorLink
             href="#about"
-            className="text-gray-800 hover:text-green-600"
+            className="text-gray-800 hover:text-green-600 text-lg"
+            onClick={() => setIsMenuOpen(false)}
           >
-            تعرف علينا
+            عن المكتبة
           </AnchorLink>
           <AnchorLink
             href="#menu"
-            className="text-gray-800 hover:text-green-600"
+            className="text-gray-800 hover:text-green-600 text-lg"
+            onClick={() => setIsMenuOpen(false)}
           >
-            القائمة
+            المؤتمرات
+          </AnchorLink>
+          <AnchorLink
+            href="#menu"
+            className="text-gray-800 hover:text-green-600 text-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            ورش العمل
+          </AnchorLink>
+          <AnchorLink
+            href="#menu"
+            className="text-gray-800 hover:text-green-600 text-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            ندوات
           </AnchorLink>
           <AnchorLink
             href="#contact"
-            className="text-gray-800 hover:text-green-600"
+            className="text-gray-800 hover:text-green-600 text-lg"
+            onClick={() => setIsMenuOpen(false)}
           >
             تواصل معنا
           </AnchorLink>
@@ -67,6 +95,7 @@ export default function Navbar() {
           <button
             className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
             hover:text-white duration-100 ease-linear"
+            onClick={openPopup}
           >
             <MagnifyingGlass size={25} />
           </button>
@@ -111,14 +140,28 @@ export default function Navbar() {
           className="text-gray-800 hover:text-green-600 text-lg"
           onClick={() => setIsMenuOpen(false)}
         >
-          تعرف علينا
+          عن المكتبة
         </AnchorLink>
         <AnchorLink
           href="#menu"
           className="text-gray-800 hover:text-green-600 text-lg"
           onClick={() => setIsMenuOpen(false)}
         >
-          القائمة
+          المؤتمرات
+        </AnchorLink>
+        <AnchorLink
+          href="#menu"
+          className="text-gray-800 hover:text-green-600 text-lg"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          ورش العمل
+        </AnchorLink>
+        <AnchorLink
+          href="#menu"
+          className="text-gray-800 hover:text-green-600 text-lg"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          ندوات
         </AnchorLink>
         <AnchorLink
           href="#contact"
@@ -141,11 +184,39 @@ export default function Navbar() {
           <button
             className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
             hover:text-white duration-100 ease-linear"
+            onClick={openPopup}
           >
             <MagnifyingGlass size={25} />
           </button>
         </div>
       </div>
+      {pop && (
+        <div className="fixed z-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
+          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative">
+            <XCircle
+              size={25}
+              className="absolute top-5 left-5 text-gray-400 cursor-pointer
+              hover:text-gray-800 ease-linear duration-150 hover:scale-105"
+              onClick={closePopup}
+            />
+            <h2 className="text-2xl font-bold text-green-700 mb-4">
+              اكتب ما تريد البحث عنه
+            </h2>
+            <input
+              type="text"
+              className="border mb-3 border-gray-200 rounded-md py-2 px-2 outline-none"
+              required
+            />
+            <button
+              className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
+            hover:text-white duration-100 ease-linear flex justify-center items-center gap-3"
+            >
+              <MagnifyingGlass size={25} />
+              بحث
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

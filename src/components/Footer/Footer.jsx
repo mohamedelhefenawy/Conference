@@ -54,7 +54,7 @@ function Footer({ line, useline }) {
         </div>
       </div>
 
-      <div className="flex gap-8 flex-wrap justify-center">
+      {/* <div className="flex gap-8 flex-wrap justify-center">
         <AnchorLink
           href="#home"
           onClick={() => useline("#home")}
@@ -91,9 +91,9 @@ function Footer({ line, useline }) {
         >
           تواصل معنا
         </AnchorLink>
-      </div>
+      </div> */}
 
-      <div className="text-4xl text-center mb-2 capitalize">
+      <div className="text-4xl text-center mb-14 capitalize">
         تم الإنشاء بواسطة{" "}
         <span className="font-bold text-[#14573a]">تهاني</span> | جميع الحقوق
         محفوظة
