@@ -3,7 +3,7 @@ import home from "../../assets/images/home-img.jpeg"; // Ensure the correct path
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import home_2 from "../../assets/images/home.jpeg";
+import home_2 from "../../assets/images/home-2.jpeg";
 
 function Home() {
   const images = [

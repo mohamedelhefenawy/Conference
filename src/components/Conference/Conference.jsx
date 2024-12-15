@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import photo from "../../assets/images/home.jpeg";
+import photo from "../../assets/images/conference.jpg";
 import {
   ArrowCircleLeft,
   ArrowCircleRight,

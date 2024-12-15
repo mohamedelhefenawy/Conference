@@ -17,7 +17,7 @@ export default function Navbar() {
     }
   };
 
-  const openPopup = (conference) => {
+  const openPopup = () => {
     setPop(true);
   };
 
@@ -107,7 +107,7 @@ export default function Navbar() {
         <img src={logo} alt="Logo" className="w-10" />
         <List
           size={30}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsMenuOpen(true)}
           weight="bold"
           className="cursor-pointer absolute left-3 
           hover:scale-110 ease-linear duration-150 hover:text-green-700"
