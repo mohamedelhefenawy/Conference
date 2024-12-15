@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
         {/* Auth Pages */}
         <Route
           path={`/login`}
-          // element={<Login />}
+          element={<Login />}
         />
         <Route
           path={`/`}
