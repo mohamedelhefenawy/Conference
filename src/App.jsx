@@ -1,27 +1,23 @@
-import React from 'react'
-import { useState } from 'react'
-import Navbar from './components/Navbar/Navbar'
-import Home from './components/Home/Home'
-import About from './components/About/About'
-import Conference from './components/Conference/Conference'
-import Ended from './components/Ended/Ended'
-import Contact from './components/Contact/Contact'
-import Footer from './components/Footer/Footer'
+import { Routes, Route } from "react-router-dom";
+import Landing from "./components/Landing";
+
 function App() {
-  const [line , useline] = useState('#home')
-
   return (
-
     <div>
-      <Navbar line = {line} useline = {useline}></Navbar>
-      <Home></Home>
-      <About></About>
-      <Conference></Conference>
-      {/* <Ended></Ended> */}
-      <Contact></Contact>
-      <Footer line = {line} useline = {useline} ></Footer>
+      <Routes>
+        {/* Auth Pages */}
+        <Route
+          path={`/login`}
+          // element={<Login />}
+        />
+        <Route
+          path={`/`}
+          element={<Landing />}
+        />
+        
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
