@@ -1,7 +1,7 @@
 
 function Login() {
   return (
-    <div className="flex w-full min-h-screen  justify-around items-center bg-gray-100 flex-col lg:flex-row gap-10">
+    <div className="flex w-full min-h-screen max-h-[200vh]  justify-around items-center bg-gray-100 flex-col lg:flex-row gap-10">
       <div className="lg:w-[40%] w-[90%] flex flex-col items-center gap-10 my-3">
         <h2 className="lg:w-[60%] w-[90%] bg-white p-4 text-3xl font-bold text-gray-600 rounded-lg shadow-md text-center">
           تسجيل الدخول
