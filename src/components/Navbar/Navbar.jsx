@@ -4,9 +4,8 @@ import logo from "../../assets/images/logo.png";
 import { List, MagnifyingGlass, User, X, XCircle } from "@phosphor-icons/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({openPopupSearch}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [pop, setPop] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,14 +34,7 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
-  const openPopup = () => {
-    setPop(true);
-  };
 
-  // Close the popup
-  const closePopup = () => {
-    setPop(false);
-  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -107,7 +99,7 @@ export default function Navbar() {
           <button
             className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
             hover:text-white duration-100 ease-linear"
-            onClick={openPopup}
+            onClick={openPopupSearch}
           >
             <MagnifyingGlass size={25} />
           </button>
@@ -190,39 +182,12 @@ export default function Navbar() {
           <button
             className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
             hover:text-white duration-100 ease-linear"
-            onClick={openPopup}
+            onClick={openPopupSearch}
           >
             <MagnifyingGlass size={25} />
           </button>
         </div>
       </div>
-      {pop && (
-        <div className="fixed z-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative">
-            <XCircle
-              size={25}
-              className="absolute top-5 left-5 text-gray-400 cursor-pointer
-              hover:text-gray-800 ease-linear duration-150 hover:scale-105"
-              onClick={closePopup}
-            />
-            <h2 className="text-2xl font-bold text-green-700 mb-4">
-              اكتب ما تريد البحث عنه
-            </h2>
-            <input
-              type="text"
-              className="border mb-3 border-gray-200 rounded-md py-2 px-2 outline-none"
-              required
-            />
-            <button
-              className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
-            hover:text-white duration-100 ease-linear flex justify-center items-center gap-3"
-            >
-              <MagnifyingGlass size={25} />
-              بحث
-            </button>
-          </form>
-        </div>
-      )}
     </div>
   );
 }
