@@ -41,7 +41,7 @@ export default function Comment() {
   return (
     <div className="relative text-center z-[1]" id="menu">
       <h1 className="text-4xl font-bold text-center text-[#166a45]">
-        تواصل <span className="text-[#111927]">معنا</span>
+        آارء <span className="text-[#111927]">العملاء</span>
       </h1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-10 md:px-20">
         {comments.map((comment, index) => (
