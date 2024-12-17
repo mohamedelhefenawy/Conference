@@ -10,7 +10,7 @@ import {
   ArrowRight,
 } from "@phosphor-icons/react";
 
-export default function Ended() {
+export default function Allcons() {
   const sliderRef = useRef(null);
 
   // Array of conference data
@@ -76,7 +76,7 @@ export default function Ended() {
   return (
     <div className="relative text-center z-[1]" id="menu">
       <h1 className="text-[#166a45] font-bold my-10 text-4xl ">
-        المؤتمرات <span className="text-[#111927]">المنتهية</span>
+        جميع <span className="text-[#111927]">المؤتمرات</span>
       </h1>
 
       {/* Custom Left Arrow */}

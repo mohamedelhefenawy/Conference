@@ -9,19 +9,13 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
 
-function Conference() {
+export default function Conference({title , subtitle , conferences }) {
   const sliderRef = useRef(null);
 
   // Array of conference data
-  const conferences = [
-    { id: 1, title: "مؤتمر الجمعية", image: photo },
-    { id: 2, title: "مؤتمر الجمعية", image: photo },
-    { id: 3, title: "مؤتمر الجمعية", image: photo },
-    { id: 4, title: "مؤتمر الجمعية", image: photo },
-    { id: 5, title: "مؤتمر الجمعية", image: photo },
-    { id: 6, title: "مؤتمر الجمعية", image: photo },
-  ];
+
 
   // State to manage popup visibility
   const [pop, setPop] = useState(false);
@@ -38,6 +32,8 @@ function Conference() {
     setPop(false);
     setSelectedConference(null);
   };
+
+  const navigate = useNavigate()
 
   const settings = {
     dots: true,
@@ -76,7 +72,7 @@ function Conference() {
   return (
     <div className="relative text-center z-[1]" id="menu">
       <h1 className="text-[#166a45] font-bold my-10 text-4xl ">
-        المؤتمرات <span className="text-[#111927]">المتاحة</span>
+        {title} <span className="text-[#111927]">{subtitle}</span>
       </h1>
 
       {/* Custom Left Arrow */}
@@ -123,42 +119,61 @@ function Conference() {
       </div>
 
       {/* Popup Modal */}
-      {pop && (
-        <div className="fixed z-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg z-10">
-            <h2 className="text-2xl font-bold text-green-700 mb-4">
-              تفاصيل المؤتمر
-            </h2>
-            <img
-              className="w-full h-96 rounded-xl mb-4"
-              src={selectedConference.image}
-              alt={selectedConference.title}
-            />
-            <h4 className="text-lg text-gray-700 mb-4">
-              {selectedConference.title}
-            </h4>
-            <p className="text-gray-600 mb-6">
-              تفاصيل إضافية حول المؤتمر يمكن أن تذهب هنا.
-            </p>
-            <div className="flex flex-col gap-3 justify-center items-center ">
-              <button
-                onClick={closePopup}
-                className="w-full bg-green-300 text-black font-medium hover:text-white py-2 rounded-lg hover:bg-green-500 transition"
-              >
-                حجز
-              </button>
-              <button
-                onClick={closePopup}
-                className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition"
-              >
-                إغلاق
-              </button>
-            </div>
+      {pop &&  (
+  <div className="fixed z-[9999] inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
+    <div className="bg-white p-8 rounded-lg z-10 w-fit">
+      <h2 className="text-2xl font-bold text-green-700 mb-4">
+        تفاصيل المؤتمر
+      </h2>
+      <div className="grid grid-cols-2 gap-6 items-center relative">
+        {/* Conference Details */}
+        <div className="flex flex-col gap-6 items-center w-fit">
+          <h4 className="text-lg text-gray-700 font-bold flex mx-auto absolute top-0 ">
+            {selectedConference.title}
+          </h4>
+          <div className="self-start flex flex-col gap-6">
+          <p className="text-gray-600 flex gap-3">
+            موعد بداية المؤتمر : <span>{selectedConference.start}</span>
+          </p>
+          <p className="text-gray-600 flex gap-3">
+            موعد نهاية المؤتمر : <span>{selectedConference.end}</span>
+          </p>
+          <p className="flex gap-3">المكان : <span>{selectedConference.location}</span></p>
+
+          <div className="flex  gap-3 mt-6">
+        <button
+          onClick={() => navigate("/login")}
+          className="w-full bg-green-300 text-black font-medium hover:text-white py-2 rounded-lg hover:bg-green-500 transition"
+        >
+          حجز
+        </button>
+        <button
+          onClick={closePopup}
+          className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition"
+        >
+          إغلاق
+        </button>
+      </div>
           </div>
         </div>
-      )}
+        {/* Conference Image */}
+        <div>
+          <img
+            className="w-full h-96 rounded-xl"
+            src={selectedConference.image}
+            alt={selectedConference.title}
+          />
+        </div> 
+      </div>
+
+      {/* Action Buttons */}
+     
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
 
-export default Conference;
+
