@@ -3,9 +3,36 @@ import React from 'react'
 import about from '../../assets/images/home.jpeg'
 import know from '../../assets/images/know.jpg'
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import  { useRef, useState ,useEffect } from "react";
+import { gsap } from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
 function About() {
+
+    const componentref = useRef(null);
+
+  useEffect(()=>{
+    gsap.fromTo(
+      componentref.current,
+      {opacity:0,y:50},
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: componentref.current,
+            start: "top 80%", 
+            toggleActions: "play none none none",
+          },
+      }
+    )
+  },[])
+
   return (
-    <div className="about py-20" id="about">
+    <div className="about py-20" id="about" ref={componentref}>
     <h1 className="text-4xl font-bold text-[#166a45] text-center">
         تعرف <span className="text-[#111927]">علينا</span>
     </h1>

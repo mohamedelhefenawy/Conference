@@ -1,7 +1,6 @@
 import photo1 from "../../assets/images/pic-1.png";
 import photo2 from "../../assets/images/pic-2.png";
 import photo3 from "../../assets/images/pic-3.png";
-import { useRef } from "react";
 import {
   ArrowCircleLeft,
   ArrowCircleRight,
@@ -13,7 +12,34 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import  { useRef, useState ,useEffect } from "react";
+import { gsap } from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Comment() {
+
+  const componentref = useRef(null);
+
+  useEffect(()=>{
+    gsap.fromTo(
+      componentref.current,
+      {opacity:0,y:50},
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: componentref.current,
+            start: "top 80%", 
+            toggleActions: "play none none none",
+          },
+      }
+    )
+  },[])
+
   const comments = [
     {
       comment:
@@ -39,7 +65,7 @@ export default function Comment() {
   ];
 
   return (
-    <div className="relative text-center z-[1]" id="menu">
+    <div className="relative text-center z-[1]" id="menu" ref={componentref}>
       <h1 className="text-4xl font-bold text-center text-[#166a45]">
         آراء <span className="text-[#111927]">العملاء</span>
       </h1>
