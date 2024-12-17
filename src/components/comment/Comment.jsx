@@ -50,7 +50,7 @@ export default function Comment() {
             className="flex flex-col items-center text-xl gap-4 justify-center border-2 border-gray-300 shadow-md w-full mx-auto p-6 rounded-xl bg-white"
           >
             {/* محتوى التعليق */}
-            <p className="text-center text-gray-800 font-medium leading-relaxed">
+            <p className="text-center text-gray-800 font-medium leading-relaxed text-lg">
               {comment.comment}
             </p>
 
