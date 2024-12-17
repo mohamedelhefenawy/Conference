@@ -10,6 +10,7 @@ import Allcons from "./allcons/Allcons";
 import photo from "../assets/images/conference.jpg";
 import { useNavigate } from "react-router-dom";
 import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
+import Comment from "./comment/Comment";
 
 
 function Landing({ closePopupSearch, popSearch }) {
@@ -196,6 +197,7 @@ function Landing({ closePopupSearch, popSearch }) {
       )}
 
       <Contact></Contact>
+      <Comment></Comment>
       <Footer line={line} useline={useline}></Footer>
     </div>
   );
