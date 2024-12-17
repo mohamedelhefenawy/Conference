@@ -4,7 +4,7 @@ import logo from "../../assets/images/logo.png";
 import { List, MagnifyingGlass, User, X, XCircle } from "@phosphor-icons/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export default function Navbar({openPopupSearch}) {
+export default function Navbar({ openPopupSearch }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
@@ -33,8 +33,6 @@ export default function Navbar({openPopupSearch}) {
     }
     setIsMenuOpen(false);
   };
-
-
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -182,7 +180,10 @@ export default function Navbar({openPopupSearch}) {
           <button
             className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
             hover:text-white duration-100 ease-linear"
-            onClick={openPopupSearch}
+            onClick={() => {
+              setIsMenuOpen(false);
+              openPopupSearch();
+            }}
           >
             <MagnifyingGlass size={25} />
           </button>
