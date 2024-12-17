@@ -8,6 +8,7 @@ import Footer from "./Footer/Footer";
 import Ended from "./Ended/Ended";
 import Allcons from "./allcons/Allcons";
 import photo from '../assets/images/conference.jpg'
+import Comment from "./comment/Comment";
 function Landing() {
   const [line, useline] = useState("#home");
 
@@ -33,6 +34,7 @@ function Landing() {
 <Conference title="المؤتمرات" subtitle="المنتهية" conferences={conferenceData} />
 
 <Contact></Contact>
+<Comment></Comment>
       <Footer line={line} useline={useline}></Footer>
     </div>
   );
