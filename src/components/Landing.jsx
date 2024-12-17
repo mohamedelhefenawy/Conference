@@ -12,11 +12,10 @@ import { useNavigate } from "react-router-dom";
 import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
 import Comment from "./comment/Comment";
 
-
 function Landing({ closePopupSearch, popSearch }) {
   const [line, useline] = useState("#home");
 
-  const conferenceData = [
+  const conferenceDataAll = [
     {
       id: 1,
       title: "مؤتمر الجمعية",
@@ -24,46 +23,55 @@ function Landing({ closePopupSearch, popSearch }) {
       start: "15/12/2024",
       end: "1/2/2025",
       location: "جدة",
+      isEnded: false,
     },
     {
       id: 2,
       title: "مؤتمر الجمعية",
       image: photo,
-      start: "15/12/2024",
-      end: "1/2/2025",
+      start: "01/10/2024",
+      end: "01/11/2024",
       location: "جدة",
+      isEnded: false,
     },
     {
       id: 3,
       title: "مؤتمر الجمعية",
       image: photo,
-      start: "15/12/2024",
-      end: "1/2/2025",
+      start: "01/09/2024",
+      end: "01/10/2024",
       location: "جدة",
+      isEnded: false,
     },
+  ];
+
+  const conferenceDataEnd = [
     {
-      id: 4,
+      id: 1,
       title: "مؤتمر الجمعية",
       image: photo,
       start: "15/12/2024",
       end: "1/2/2025",
       location: "جدة",
+      isEnded: true,
     },
     {
-      id: 5,
+      id: 2,
       title: "مؤتمر الجمعية",
       image: photo,
-      start: "15/12/2024",
-      end: "1/2/2025",
+      start: "01/10/2024",
+      end: "01/11/2024",
       location: "جدة",
+      isEnded: true,
     },
     {
-      id: 6,
+      id: 3,
       title: "مؤتمر الجمعية",
       image: photo,
-      start: "15/12/2024",
-      end: "1/2/2025",
+      start: "01/09/2024",
+      end: "01/10/2024",
       location: "جدة",
+      isEnded: true,
     },
   ];
 
@@ -95,19 +103,19 @@ function Landing({ closePopupSearch, popSearch }) {
       <Conference
         title="جميع"
         subtitle="المؤتمرات"
-        conferences={conferenceData}
+        conferences={conferenceDataAll}
         openPopup={openPopup}
       />
       <Conference
         title="المؤتمرات"
         subtitle="المتاحة"
-        conferences={conferenceData}
+        conferences={conferenceDataAll}
         openPopup={openPopup}
       />
       <Conference
         title="المؤتمرات"
         subtitle="المنتهية"
-        conferences={conferenceData}
+        conferences={conferenceDataEnd}
         openPopup={openPopup}
       />
 
@@ -145,12 +153,14 @@ function Landing({ closePopupSearch, popSearch }) {
                   </div>
 
                   <div className="flex gap-3 mt-6 h-fit">
-                    <button
-                      onClick={() => navigate("/login")}
-                      className="w-full bg-green-300 text-black font-medium hover:text-white py-2 rounded-lg hover:bg-green-500 transition"
-                    >
-                      حجز
-                    </button>
+                    {!selectedConference.isEnded && (
+                      <button
+                        onClick={() => navigate("/login")}
+                        className="w-full bg-green-300 text-black font-medium hover:text-white py-2 rounded-lg hover:bg-green-500 transition"
+                      >
+                        حجز
+                      </button>
+                    )}
                     <button
                       onClick={closePopup}
                       className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition"
@@ -170,7 +180,7 @@ function Landing({ closePopupSearch, popSearch }) {
 
       {popSearch && (
         <div className="fixed z-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative">
+          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative w-2/3">
             <XCircle
               size={25}
               className="absolute top-5 left-5 text-gray-400 cursor-pointer
