@@ -1,8 +1,32 @@
-import React from 'react'
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import  { useRef, useState ,useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Contact() {
+
+  const componentref = useRef(null);
+
+  useEffect(()=>{
+    gsap.fromTo(
+      componentref.current,
+      {opacity:0,y:50},
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: componentref.current,
+            start: "top 80%", 
+            toggleActions: "play none none none",
+          },
+      }
+    )
+  },[])
   return (
-    <div className="py-20 contact my-12" id="contact">
+    <div className="py-20 contact my-12" id="contact" ref={componentref}>
   <h1 className="text-4xl font-bold text-center text-[#166a45]">
     تواصل <span className="text-[#111927]">معنا</span>
   </h1>

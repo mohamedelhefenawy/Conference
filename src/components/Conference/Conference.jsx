@@ -1,4 +1,4 @@
-import  { useRef, useState } from "react";
+import  { useRef, useState ,useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,9 +10,33 @@ import {
   ArrowRight,
 } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default function Conference({ title, subtitle, conferences, openPopup }) {
   const sliderRef = useRef(null);
+  const componentref = useRef(null);
+
+  useEffect(()=>{
+    gsap.fromTo(
+      componentref.current,
+      {opacity:0,y:50},
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: componentref.current,
+            start: "top 80%", 
+            toggleActions: "play none none none",
+          },
+      }
+    )
+  },[])
 
   // Array of conference data
 
@@ -22,7 +46,7 @@ export default function Conference({ title, subtitle, conferences, openPopup }) 
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 3000,
@@ -53,7 +77,7 @@ export default function Conference({ title, subtitle, conferences, openPopup }) 
   };
 
   return (
-    <div className="relative text-center z-10 py-10" id="menu">
+    <div ref={componentref} style={{opacity:0}} className="relative text-center z-10 py-10" id="menu">
       <h1 className="text-[#166a45] font-bold my-10 text-4xl ">
         {title} <span className="text-[#111927]">{subtitle}</span>
       </h1>
