@@ -5,7 +5,7 @@ import know from '../../assets/images/know.jpg'
 
 function About() {
   return (
-    <div className="about my-12" id="about">
+    <div className="about py-20" id="about">
     <h1 className="text-4xl font-bold text-[#166a45] text-center">
         تعرف <span className="text-[#111927]">علينا</span>
     </h1>

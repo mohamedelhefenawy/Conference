@@ -1,20 +1,38 @@
 import { useEffect, useRef, useState } from "react";
 import menu_icon from "../../assets/images/menu_icon.png";
 import logo from "../../assets/images/logo.png";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import { List, MagnifyingGlass, User, X, XCircle } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [pop, setPop] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsMenuOpen(false);
     }
+  };
+
+  const handleNavigation = (path, sectionId) => {
+    if (location.pathname !== path) {
+      navigate(path); // Navigate to the target page
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // Delay to ensure DOM is loaded
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setIsMenuOpen(false);
   };
 
   const openPopup = () => {
@@ -41,48 +59,42 @@ export default function Navbar() {
           <img src={logo} alt="Logo" className="w-20" />
         </div>
         <nav className="flex gap-3 text-lg">
-          <AnchorLink
-            href="#home"
-            className="text-gray-800 hover:text-green-600 text-lg"
-            onClick={() => setIsMenuOpen(false)}
+          <button
+            className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+            onClick={() => handleNavigation("/", "home")}
           >
             الصفحة الرئيسية
-          </AnchorLink>
-          <AnchorLink
-            href="#about"
-            className="text-gray-800 hover:text-green-600 text-lg"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+            onClick={() => handleNavigation("/", "about")}
           >
             عن المكتبة
-          </AnchorLink>
-          <AnchorLink
-            href="#menu"
-            className="text-gray-800 hover:text-green-600 text-lg"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+            onClick={() => handleNavigation("/", "menu")}
           >
             المؤتمرات
-          </AnchorLink>
-          <AnchorLink
-            href="#menu"
-            className="text-gray-800 hover:text-green-600 text-lg"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+            onClick={() => handleNavigation("/", "workshops")}
           >
             ورش العمل
-          </AnchorLink>
-          <AnchorLink
-            href="#menu"
-            className="text-gray-800 hover:text-green-600 text-lg"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+            onClick={() => handleNavigation("/", "seminars")}
           >
             ندوات
-          </AnchorLink>
-          <AnchorLink
-            href="#contact"
-            className="text-gray-800 hover:text-green-600 text-lg"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+            onClick={() => handleNavigation("/", "contact")}
           >
             تواصل معنا
-          </AnchorLink>
+          </button>
         </nav>
         <div className="flex justify-center items-center gap-3">
           <button
@@ -128,48 +140,42 @@ export default function Navbar() {
           weight="bold"
           onClick={() => setIsMenuOpen(false)}
         />
-        <AnchorLink
-          href="#home"
-          className="text-gray-800 hover:text-green-600 text-lg"
-          onClick={() => setIsMenuOpen(false)}
+        <button
+          className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+          onClick={() => handleNavigation("/", "home")}
         >
           الصفحة الرئيسية
-        </AnchorLink>
-        <AnchorLink
-          href="#about"
-          className="text-gray-800 hover:text-green-600 text-lg"
-          onClick={() => setIsMenuOpen(false)}
+        </button>
+        <button
+          className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+          onClick={() => handleNavigation("/", "about")}
         >
           عن المكتبة
-        </AnchorLink>
-        <AnchorLink
-          href="#menu"
-          className="text-gray-800 hover:text-green-600 text-lg"
-          onClick={() => setIsMenuOpen(false)}
+        </button>
+        <button
+          className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+          onClick={() => handleNavigation("/", "menu")}
         >
           المؤتمرات
-        </AnchorLink>
-        <AnchorLink
-          href="#menu"
-          className="text-gray-800 hover:text-green-600 text-lg"
-          onClick={() => setIsMenuOpen(false)}
+        </button>
+        <button
+          className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+          onClick={() => handleNavigation("/", "workshops")}
         >
           ورش العمل
-        </AnchorLink>
-        <AnchorLink
-          href="#menu"
-          className="text-gray-800 hover:text-green-600 text-lg"
-          onClick={() => setIsMenuOpen(false)}
+        </button>
+        <button
+          className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+          onClick={() => handleNavigation("/", "seminars")}
         >
           ندوات
-        </AnchorLink>
-        <AnchorLink
-          href="#contact"
-          className="text-gray-800 hover:text-green-600 text-lg"
-          onClick={() => setIsMenuOpen(false)}
+        </button>
+        <button
+          className="text-gray-800 hover:text-green-600 text-lg cursor-pointer"
+          onClick={() => handleNavigation("/", "contact")}
         >
           تواصل معنا
-        </AnchorLink>
+        </button>
         <div className="flex justify-center items-center gap-3">
           <button
             className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
