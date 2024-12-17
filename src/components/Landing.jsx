@@ -180,7 +180,7 @@ function Landing({ closePopupSearch, popSearch }) {
 
       {popSearch && (
         <div className="fixed z-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative w-2/3">
+          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative w-[90%] md:w-2/3">
             <XCircle
               size={25}
               className="absolute top-5 left-5 text-gray-400 cursor-pointer
