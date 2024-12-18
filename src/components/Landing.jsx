@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import Home from "./Home/Home";
 import About from "./About/About";
@@ -27,7 +27,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 2,
-      title: "مؤتمر",
+      title: "مؤتمر ",
       image: photo,
       start: "01/10/2024",
       end: "01/11/2024",
@@ -36,7 +36,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 3,
-      title: "مؤتمر",
+      title: "مؤتمر ",
       image: photo,
       start: "01/09/2024",
       end: "01/10/2024",
@@ -48,7 +48,7 @@ function Landing({ closePopupSearch, popSearch }) {
   const conferenceDataEnd = [
     {
       id: 1,
-      title: "مؤتمر",
+      title: "مؤتمر ",
       image: photo,
       start: "15/12/2024",
       end: "1/2/2025",
@@ -57,7 +57,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 2,
-      title: "مؤتمر",
+      title: "مؤتمر ",
       image: photo,
       start: "01/10/2024",
       end: "01/11/2024",
@@ -66,7 +66,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 3,
-      title: "مؤتمر",
+      title: "مؤتمر ",
       image: photo,
       start: "01/09/2024",
       end: "01/10/2024",
@@ -78,6 +78,8 @@ function Landing({ closePopupSearch, popSearch }) {
   // State to manage popup visibility
   const [pop, setPop] = useState(false);
   const [selectedConference, setSelectedConference] = useState(null);
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+  const searchRef = useRef(null);
 
   // Open the popup with the selected conference
   const openPopup = (conference) => {
@@ -93,6 +95,19 @@ function Landing({ closePopupSearch, popSearch }) {
 
   const navigate = useNavigate();
 
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      closePopupSearch();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col gap-10 justify-center">
       <Home></Home>
@@ -102,7 +117,7 @@ function Landing({ closePopupSearch, popSearch }) {
       <Ended></Ended> */}
       <Conference
         title="جميع"
-        subtitle="الانشطة"
+        subtitle="الانشطه"
         conferences={conferenceDataAll}
         openPopup={openPopup}
       />
@@ -180,28 +195,101 @@ function Landing({ closePopupSearch, popSearch }) {
 
       {popSearch && (
         <div className="fixed z-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <form className="bg-white p-8 rounded-lg z-10 flex flex-col relative w-2/3">
-            <XCircle
-              size={25}
-              className="absolute top-5 left-5 text-gray-400 cursor-pointer
-              hover:text-gray-800 ease-linear duration-150 hover:scale-105"
-              onClick={closePopupSearch}
-            />
-            <h2 className="text-2xl font-bold text-green-700 mb-4">
-              اكتب ما تريد البحث عنه
-            </h2>
-            <input
-              type="text"
-              className="border mb-3 border-gray-200 rounded-md py-2 px-2 outline-none"
-              required
-            />
-            <button
-              className="p-3 bg-green-300 rounded-xl hover:bg-green-700 
-            hover:text-white duration-100 ease-linear flex justify-center items-center gap-3"
+          <form
+            className="bg-white p-8 rounded-lg z-10 flex flex-col relative w-[90%] md:w-2/3"
+            ref={searchRef}
+          >
+            {/* زر الإغلاق */}
+            <div className="flex justify-between w-full mb-6">
+              <h1 className="text-2xl">البحث</h1>
+              <XCircle
+                size={25}
+                className="text-gray-400 cursor-pointer hover:text-gray-800 ease-linear duration-150 hover:scale-105"
+                onClick={closePopupSearch}
+              />
+            </div>
+
+            {/* البحث */}
+            <div className="flex items-center gap-3 mb-6" dir="ltr">
+              <button
+                type="submit"
+                className="bg-green-600 text-white p-3 rounded-l-lg"
+              >
+                <MagnifyingGlass size={20} />
+              </button>
+              <input
+                type="text"
+                placeholder="اكتب ما تريد البحث عنه"
+                className="border border-gray-300 rounded-r-lg py-2 px-4 w-full outline-none"
+                required
+                dir="rtl"
+              />
+            </div>
+
+            {/* اختيار البحث المتقدم */}
+            <div
+              className="text-green-600 text-lg font-semibold cursor-pointer mb-6 text-right"
+              onClick={() => setShowAdvancedSearch((prev) => !prev)} // Toggle البحث المتقدم
             >
-              <MagnifyingGlass size={25} />
-              بحث
-            </button>
+              <span>البحث المتقدم</span>
+            </div>
+
+            {/* البحث المتقدم */}
+            {showAdvancedSearch && (
+              <div className="mb-6">
+                <div className="flex flex-col gap-4">
+                  <input
+                    type="text"
+                    placeholder="الكلمة المفتاحية"
+                    className="border border-gray-300 rounded-md py-2 px-4 w-full outline-none"
+                    dir="rtl"
+                  />
+                  <input
+                    type="text"
+                    placeholder="المكان"
+                    className="border border-gray-300 rounded-md py-2 px-4 w-full outline-none"
+                    dir="rtl"
+                  />
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded-md py-2 px-4 w-full outline-none"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* الكلمات الأكثر بحثًا */}
+            <div>
+              <h3 className="text-xl font-bold text-gray-700 mb-4 text-right">
+                الكلمات الأعلى بحثًا
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  className="bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  سياسة الحكومة الرقمية
+                </button>
+                <button
+                  type="button"
+                  className="bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  معايير الإطار التنظيمي
+                </button>
+                <button
+                  type="button"
+                  className="bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  الإطار التنظيمي
+                </button>
+                <button
+                  type="button"
+                  className="bg-gray-100 border border-gray-300 rounded-xl px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  المعايير
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       )}
