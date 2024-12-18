@@ -18,7 +18,7 @@ function Landing({ closePopupSearch, popSearch }) {
   const conferenceDataAll = [
     {
       id: 1,
-      title: "مؤتمر الجمعية",
+      title: "مؤتمر",
       image: photo,
       start: "15/12/2024",
       end: "1/2/2025",
@@ -27,7 +27,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 2,
-      title: "مؤتمر الجمعية",
+      title: "مؤتمر",
       image: photo,
       start: "01/10/2024",
       end: "01/11/2024",
@@ -36,7 +36,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 3,
-      title: "مؤتمر الجمعية",
+      title: "مؤتمر",
       image: photo,
       start: "01/09/2024",
       end: "01/10/2024",
@@ -48,7 +48,7 @@ function Landing({ closePopupSearch, popSearch }) {
   const conferenceDataEnd = [
     {
       id: 1,
-      title: "مؤتمر الجمعية",
+      title: "مؤتمر",
       image: photo,
       start: "15/12/2024",
       end: "1/2/2025",
@@ -57,7 +57,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 2,
-      title: "مؤتمر الجمعية",
+      title: "مؤتمر",
       image: photo,
       start: "01/10/2024",
       end: "01/11/2024",
@@ -66,7 +66,7 @@ function Landing({ closePopupSearch, popSearch }) {
     },
     {
       id: 3,
-      title: "مؤتمر الجمعية",
+      title: "مؤتمر",
       image: photo,
       start: "01/09/2024",
       end: "01/10/2024",
@@ -102,7 +102,7 @@ function Landing({ closePopupSearch, popSearch }) {
       <Ended></Ended> */}
       <Conference
         title="جميع"
-        subtitle="المؤتمرات"
+        subtitle="الانشطة"
         conferences={conferenceDataAll}
         openPopup={openPopup}
       />

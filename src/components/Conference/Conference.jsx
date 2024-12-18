@@ -99,6 +99,7 @@ export default function Conference({ title, subtitle, conferences, openPopup }) 
                 className="w-full h-auto rounded-xl"
                 src={conference.image}
                 alt={conference.title}
+                loading = 'lazy'
               />
               <div className="my-10 self-end">
                 <h4 className="text-lg font-medium text-gray-700 my-4 bg-green-400 rounded-2xl p-1">
