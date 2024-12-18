@@ -227,14 +227,13 @@ function Landing({ closePopupSearch, popSearch }) {
             </div>
 
             {/* اختيار البحث المتقدم */}
-            <div
+            {/* <div
               className="text-green-600 text-lg font-semibold cursor-pointer mb-6 text-right"
               onClick={() => setShowAdvancedSearch((prev) => !prev)} // Toggle البحث المتقدم
             >
               <span>البحث المتقدم</span>
             </div>
 
-            {/* البحث المتقدم */}
             {showAdvancedSearch && (
               <div className="mb-6">
                 <div className="flex flex-col gap-4">
@@ -256,7 +255,7 @@ function Landing({ closePopupSearch, popSearch }) {
                   />
                 </div>
               </div>
-            )}
+            )} */}
 
             {/* الكلمات الأكثر بحثًا */}
             <div>
