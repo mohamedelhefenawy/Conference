@@ -51,9 +51,9 @@ function Contact() {
         placeholder="الايميل"
         className="w-[80%] p-3 text-[#384250] text-xl border-2 border-[#54c084] rounded-lg mx-auto"
       />
-      <input
+      <textarea
         type="text"
-        placeholder="الهاتف"
+        placeholder="نص الرسالة"
         className="w-[80%] p-3 text-[#384250] text-xl border-2 border-[#54c084] rounded-lg mx-auto"
       />
       <button className="w-[100px] py-2 bg-[#dff6e7] hover:bg-[#cdebd9] text-[#472400] rounded-md">

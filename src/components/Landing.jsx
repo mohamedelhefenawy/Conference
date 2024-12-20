@@ -11,39 +11,115 @@ import photo from "../assets/images/conference.jpg";
 import { useNavigate } from "react-router-dom";
 import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
 import Comment from "./comment/Comment";
+import axios from'axios'
 
 function Landing({ closePopupSearch, popSearch }) {
   const [line, useline] = useState("#home");
+  const [conferencedata , Setconference ] = useState([])
+  const token =  'a1efd174703f533044d12a7992e76f949ed84e7f'
+  useEffect(()=>{
+    const response = axios.get('https://events-back.cowdly.com/api/events/',{
+      headers: {
+        'accept': 'application/json',
+        'Authorization': `Token ${token}`,
+      }});
+      // const data = response.data
+      console.log(response)
+      console.log(response[PromiseResult])
+      // const conferenceDataAll = 
+      //   response.data.map(item=>({
+      //     id:item.id,
+      //     title:item.name,
+      //     image:item.image,
+      //     start:item.start_date,
+      //     end:item.end_date,
+      //     hour_start :'12:30 PM',
+      //     hour_end:'5 PM',
+      //     location:item.location,
+      //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+      //     isEnded:item.has_ended
+      //   }));
+      // Setconference(conferenceDataAll)
+      
+    
+  },[])
 
-  const conferenceDataAll = [
-    {
-      id: 1,
-      title: "مؤتمر",
-      image: photo,
-      start: "15/12/2024",
-      end: "1/2/2025",
-      location: "جدة",
-      isEnded: false,
-    },
-    {
-      id: 2,
-      title: "مؤتمر ",
-      image: photo,
-      start: "01/10/2024",
-      end: "01/11/2024",
-      location: "جدة",
-      isEnded: false,
-    },
-    {
-      id: 3,
-      title: "مؤتمر ",
-      image: photo,
-      start: "01/09/2024",
-      end: "01/10/2024",
-      location: "جدة",
-      isEnded: false,
-    },
-  ];
+ 
+  // {
+  //   id: data.id,
+  //   title: data.name,
+  //   image: data.image,
+  //   start: data.start_date,
+  //   end: data.start_date,
+  //   hour_start :'12:30 PM',
+  //   hour_end:'5 PM',
+  //   location: data.location,
+  //   link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+  //   isEnded: data.has_ended,
+  // },
+  // {
+  //   id: data.id,
+  //   title: data.name,
+  //   image: data.image,
+  //   start: data.start_date,
+  //   end: data.start_date,
+  //   hour_start :'12:30 PM',
+  //   hour_end:'5 PM',
+  //   location: data.location,
+  //   link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+  //   isEnded: data.has_ended,
+  // },
+  // {
+  //   id: data.id,
+  //   title: data.name,
+  //   image: data.image,
+  //   start: data.start_date,
+  //   end: data.start_date,
+  //   hour_start :'12:30 PM',
+  //   hour_end:'5 PM',
+  //   location: data.location,
+  //   link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+  //   isEnded: data.has_ended,
+  // },
+
+  // const conferenceDataAll = [
+  //   {
+  //     id: data.id,
+  //     title: data.name,
+  //     image: data.image,
+  //     start: data.start_date,
+  //     end: data.start_date,
+  //     hour_start :'12:30 PM',
+  //     hour_end:'5 PM',
+  //     location: data.location,
+  //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+  //     isEnded: data.has_ended,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "مؤتمر ",
+  //     image: photo,
+  //     start: "01/10/2024",
+  //     end: "01/11/2024",
+  //     hour_start :'12:30 PM',
+  //     hour_end:'5 PM',
+  //     location: "جدة",
+  //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+  //     isEnded: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "مؤتمر ",
+  //     image: photo,
+  //     start: "01/09/2024",
+  //     end: "01/10/2024",
+  //     hour_start :'12:30 PM',
+  //     hour_end:'5 PM',
+  //     location: "جدة",
+  //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+  //     isEnded: false,
+  //   },
+  // ];
 
   const conferenceDataEnd = [
     {
@@ -52,7 +128,10 @@ function Landing({ closePopupSearch, popSearch }) {
       image: photo,
       start: "15/12/2024",
       end: "1/2/2025",
+      hour_start :'12:30 PM',
+      hour_end:'5 PM',
       location: "جدة",
+      link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
       isEnded: true,
     },
     {
@@ -61,7 +140,10 @@ function Landing({ closePopupSearch, popSearch }) {
       image: photo,
       start: "01/10/2024",
       end: "01/11/2024",
+      hour_start :'12:30 PM',
+      hour_end:'5 PM',
       location: "جدة",
+      link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
       isEnded: true,
     },
     {
@@ -70,7 +152,10 @@ function Landing({ closePopupSearch, popSearch }) {
       image: photo,
       start: "01/09/2024",
       end: "01/10/2024",
-      location: "جدة",
+      hour_start :'12:30 PM',
+      hour_end:'5 PM',
+      location: "جدة",   
+      link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
       isEnded: true,
     },
   ];
@@ -78,7 +163,7 @@ function Landing({ closePopupSearch, popSearch }) {
   // State to manage popup visibility
   const [pop, setPop] = useState(false);
   const [selectedConference, setSelectedConference] = useState(null);
-  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+  // const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
   const searchRef = useRef(null);
 
   // Open the popup with the selected conference
@@ -118,13 +203,13 @@ function Landing({ closePopupSearch, popSearch }) {
       <Conference
         title="جميع"
         subtitle="الانشطه"
-        conferences={conferenceDataAll}
+        conferences={conferencedata}
         openPopup={openPopup}
       />
       <Conference
         title="المؤتمرات"
         subtitle="المتاحة"
-        conferences={conferenceDataAll}
+        conferences={conferencedata}
         openPopup={openPopup}
       />
       <Conference
@@ -162,8 +247,17 @@ function Landing({ closePopupSearch, popSearch }) {
                     <p className="text-gray-600 flex gap-3">
                       موعد نهاية المؤتمر : <span>{selectedConference.end}</span>
                     </p>
+                    <p className="text-gray-600 flex gap-3">
+                      موعد البداية: <span>{selectedConference.hour_start}</span>
+                    </p>
+                    <p className="text-gray-600 flex gap-3">
+                      موعد النهاية : <span>{selectedConference.hour_end}</span>
+                    </p>
                     <p className="flex gap-3">
                       المكان : <span>{selectedConference.location}</span>
+                    </p>
+                    <p className="flex gap-3   ">
+                      رابط الموقع : <a className="hover:text-green-600 cursor-pointer" href={selectedConference.link} target="_blank">الرابط</a>
                     </p>
                   </div>
 

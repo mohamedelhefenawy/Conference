@@ -12,6 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axios from 'axios'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,6 +76,7 @@ export default function Conference({ title, subtitle, conferences, openPopup }) 
       },
     ],
   };
+
 
   return (
     <div ref={componentref} style={{opacity:0}} className="relative text-center z-10 py-10" id="menu">
