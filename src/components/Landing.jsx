@@ -228,7 +228,7 @@ function Landing({ closePopupSearch, popSearch }) {
 
       {pop && (
         <div className="fixed z-20 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <div className="bg-white py-12 px-7 rounded-lg z-20 w-full md:w-2/3">
+          <div className="bg-white py-12 px-7 rounded-lg z-20 w-full md:w-2/3 mt-10">
             <h2 className="text-2xl font-bold text-green-700 mb-4">
               تفاصيل المؤتمر
             </h2>
