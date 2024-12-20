@@ -17,32 +17,41 @@ function Landing({ closePopupSearch, popSearch }) {
   const [line, useline] = useState("#home");
   const [conferencedata , Setconference ] = useState([])
   const token =  'a1efd174703f533044d12a7992e76f949ed84e7f'
+
+  const fetchData = async ()=>{
+    try{
+      const response = await axios.get('https://events-back.cowdly.com/api/events/',{
+        headers: {
+          'accept': 'application/json',
+          'Authorization': `Token ${token}`,
+        }});
+        // const data = response.data
+        console.log(response)
+        // console.log(response[PromiseResult])
+        // const conferenceDataAll = 
+        //   response.data.map(item=>({
+        //     id:item.id,
+        //     title:item.name,
+        //     image:item.image,
+        //     start:item.start_date,
+        //     end:item.end_date,
+        //     hour_start :'12:30 PM',
+        //     hour_end:'5 PM',
+        //     location:item.location,
+        //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+        //     isEnded:item.has_ended
+        //   }));
+        // Setconference(conferenceDataAll)
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
   useEffect(()=>{
-    const response = axios.get('https://events-back.cowdly.com/api/events/',{
-      headers: {
-        'accept': 'application/json',
-        'Authorization': `Token ${token}`,
-      }});
-      // const data = response.data
-      console.log(response)
-      console.log(response[PromiseResult])
-      // const conferenceDataAll = 
-      //   response.data.map(item=>({
-      //     id:item.id,
-      //     title:item.name,
-      //     image:item.image,
-      //     start:item.start_date,
-      //     end:item.end_date,
-      //     hour_start :'12:30 PM',
-      //     hour_end:'5 PM',
-      //     location:item.location,
-      //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-      //     isEnded:item.has_ended
-      //   }));
-      // Setconference(conferenceDataAll)
-      
+   
+      fetchData()
     
-  },[])
+  },[token])
 
  
   // {
