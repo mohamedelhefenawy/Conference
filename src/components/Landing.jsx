@@ -11,49 +11,47 @@ import photo from "../assets/images/conference.jpg";
 import { useNavigate } from "react-router-dom";
 import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
 import Comment from "./comment/Comment";
-import axios from'axios'
+import axios from "axios";
 
 function Landing({ closePopupSearch, popSearch }) {
   const [line, useline] = useState("#home");
-  const [conferencedata , Setconference ] = useState([])
-  const token =  'a1efd174703f533044d12a7992e76f949ed84e7f'
+  const [conferenceData, setConferenceData] = useState([]);
+  const token = "a1efd174703f533044d12a7992e76f949ed84e7f";
 
-  const fetchData = async ()=>{
-    try{
-      const response = await axios.get('https://events-back.cowdly.com/api/events/',{
-        headers: {
-          'accept': 'application/json',
-          'Authorization': `Token ${token}`,
-        }});
-        // const data = response.data
-        console.log(response.data)
-        // console.log(response[PromiseResult])
-        const conferenceDataAll = 
-          response.data.map(item=>({
-            id:item.id,
-            title:item.name,
-            image:item.image,
-            start:item.start_date,
-            end:item.end_date,
-            hour_start :'12:30 PM',
-            hour_end:'5 PM',
-            location:item.location,
-            link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-            isEnded:item.has_ended
-          }));
-        Setconference(conferenceDataAll)
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://events-back.cowdly.com/api/events/",
+        {
+          headers: {
+            accept: "application/json",
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      const conferenceDataAll = response.data.map((item) => ({
+        id: item.id,
+        title: item.name,
+        image: item.image,
+        start: item.start_date,
+        end: item.end_date,
+        hour_start: "12:30 PM",
+        hour_end: "5 PM",
+        location: item.location,
+        link: "https://maps.app.goo.gl/jo2Ck77Z437EiLUe7",
+        isEnded: item.has_ended,
+      }));
+      setConferenceData(conferenceDataAll);
+    } catch (error) {
+      console.log(error);
     }
-    catch(error){
-      console.log(error)
-    }
-  }
-  useEffect(()=>{
-   
-      fetchData()
-    
-  },[token])
+  };
 
- 
+  useEffect(() => {
+    fetchData();
+  }, [token]);
+
   // {
   //   id: data.id,
   //   title: data.name,
@@ -137,10 +135,10 @@ function Landing({ closePopupSearch, popSearch }) {
       image: photo,
       start: "15/12/2024",
       end: "1/2/2025",
-      hour_start :'12:30 PM',
-      hour_end:'5 PM',
+      hour_start: "12:30 PM",
+      hour_end: "5 PM",
       location: "جدة",
-      link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+      link: "https://maps.app.goo.gl/jo2Ck77Z437EiLUe7",
       isEnded: true,
     },
     {
@@ -149,10 +147,10 @@ function Landing({ closePopupSearch, popSearch }) {
       image: photo,
       start: "01/10/2024",
       end: "01/11/2024",
-      hour_start :'12:30 PM',
-      hour_end:'5 PM',
+      hour_start: "12:30 PM",
+      hour_end: "5 PM",
       location: "جدة",
-      link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+      link: "https://maps.app.goo.gl/jo2Ck77Z437EiLUe7",
       isEnded: true,
     },
     {
@@ -161,10 +159,10 @@ function Landing({ closePopupSearch, popSearch }) {
       image: photo,
       start: "01/09/2024",
       end: "01/10/2024",
-      hour_start :'12:30 PM',
-      hour_end:'5 PM',
-      location: "جدة",   
-      link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+      hour_start: "12:30 PM",
+      hour_end: "5 PM",
+      location: "جدة",
+      link: "https://maps.app.goo.gl/jo2Ck77Z437EiLUe7",
       isEnded: true,
     },
   ];
@@ -212,13 +210,13 @@ function Landing({ closePopupSearch, popSearch }) {
       <Conference
         title="جميع"
         subtitle="الانشطه"
-        conferences={conferencedata}
+        conferences={conferenceData}
         openPopup={openPopup}
       />
       <Conference
         title="المؤتمرات"
         subtitle="المتاحة"
-        conferences={conferencedata}
+        conferences={conferenceData}
         openPopup={openPopup}
       />
       <Conference
@@ -237,7 +235,7 @@ function Landing({ closePopupSearch, popSearch }) {
             <div className="grid md:grid-cols-2 gap-6 items-center relative">
               <div>
                 <img
-                  className="w-full h-fit rounded-xl"
+                  className="w-[75%] h-fit rounded-xl"
                   src={selectedConference.image}
                   alt={selectedConference.title}
                 />
@@ -266,7 +264,14 @@ function Landing({ closePopupSearch, popSearch }) {
                       المكان : <span>{selectedConference.location}</span>
                     </p>
                     <p className="flex gap-3   ">
-                      رابط الموقع : <a className="hover:text-green-600 cursor-pointer" href={selectedConference.link} target="_blank">الرابط</a>
+                      رابط الموقع :{" "}
+                      <a
+                        className="hover:text-green-600 cursor-pointer"
+                        href={selectedConference.link}
+                        target="_blank"
+                      >
+                        الرابط
+                      </a>
                     </p>
                   </div>
 
