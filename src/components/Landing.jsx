@@ -228,14 +228,14 @@ function Landing({ closePopupSearch, popSearch }) {
 
       {pop && (
         <div className="fixed z-20 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
-          <div className="bg-white py-12 px-7 rounded-lg z-20 w-full md:w-2/3 mt-10">
+          <div className="bg-white py-12 px-7 rounded-lg z-20 w-full md:w-2/3 ">
             <h2 className="text-2xl font-bold text-green-700 mb-4">
               تفاصيل المؤتمر
             </h2>
             <div className="grid md:grid-cols-2 gap-6 items-center relative">
               <div>
                 <img
-                  className="w-[75%] h-fit rounded-xl"
+                  className="w-[50%] md:w-[75%]  rounded-xl"
                   src={selectedConference.image}
                   alt={selectedConference.title}
                 />
