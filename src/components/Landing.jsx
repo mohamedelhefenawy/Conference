@@ -26,22 +26,22 @@ function Landing({ closePopupSearch, popSearch }) {
           'Authorization': `Token ${token}`,
         }});
         // const data = response.data
-        console.log(response)
+        console.log(response.data)
         // console.log(response[PromiseResult])
-        // const conferenceDataAll = 
-        //   response.data.map(item=>({
-        //     id:item.id,
-        //     title:item.name,
-        //     image:item.image,
-        //     start:item.start_date,
-        //     end:item.end_date,
-        //     hour_start :'12:30 PM',
-        //     hour_end:'5 PM',
-        //     location:item.location,
-        //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-        //     isEnded:item.has_ended
-        //   }));
-        // Setconference(conferenceDataAll)
+        const conferenceDataAll = 
+          response.data.map(item=>({
+            id:item.id,
+            title:item.name,
+            image:item.image,
+            start:item.start_date,
+            end:item.end_date,
+            hour_start :'12:30 PM',
+            hour_end:'5 PM',
+            location:item.location,
+            link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
+            isEnded:item.has_ended
+          }));
+        Setconference(conferenceDataAll)
     }
     catch(error){
       console.log(error)
