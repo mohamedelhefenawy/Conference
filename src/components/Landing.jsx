@@ -29,24 +29,48 @@ function Landing({ closePopupSearch, popSearch }) {
           },
         }
       );
-      console.log(response);
-      const conferenceDataAll = response.data.map((item) => ({
-        id: item.id,
-        title: item.name,
-        image: item.image,
-        start: item.start_date,
-        end: item.end_date,
-        hour_start: "12:30 PM",
-        hour_end: "5 PM",
-        location: item.location,
-        link: "https://maps.app.goo.gl/jo2Ck77Z437EiLUe7",
-        isEnded: item.has_ended,
-      }));
+  
+      const conferenceDataAll = response.data.map((item) => {
+        // Start Date
+        const startDate = new Date(item.start_date);
+        const dayStart = startDate.toISOString().split("T")[0];
+        const hourStart = startDate.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          
+        });
+  
+        // End Date
+        const endDate = new Date(item.end_date);
+        const dayEnd = endDate.toISOString().split("T")[0];
+        const hourEnd = endDate.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          
+        });
+  
+        return {
+          id: item.id,
+          title: item.name,
+          image: item.image,
+          start: dayStart,
+          end: dayEnd,
+          hour_start: hourStart,
+          hour_end: hourEnd,
+          location: item.location,
+          link: item.link,
+          isEnded: item.has_ended,
+        };
+      });
+  
       setConferenceData(conferenceDataAll);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching conference data:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -227,7 +251,7 @@ function Landing({ closePopupSearch, popSearch }) {
       />
 
       {pop && (
-        <div className="fixed z-20 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center">
+        <div className="fixed z-20 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center ">
           <div className="bg-white py-12 px-7 rounded-lg z-20 w-full md:w-2/3 ">
             <h2 className="text-2xl font-bold text-green-700 mb-4">
               تفاصيل المؤتمر
@@ -235,7 +259,7 @@ function Landing({ closePopupSearch, popSearch }) {
             <div className="grid md:grid-cols-2 gap-6 items-center relative">
               <div>
                 <img
-                  className="w-[50%] md:w-[75%]  rounded-xl"
+                  className="w-[50%] h-[200px] md:w-[75%]  rounded-xl"
                   src={selectedConference.image}
                   alt={selectedConference.title}
                 />

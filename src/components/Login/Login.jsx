@@ -19,10 +19,18 @@ function Login() {
   // Validation function
   const validateForm = () => {
     if (!firstName || !lastName || !email) {
-      toast.error('الحقل فارغ')
-      return false; // If any field is empty, return false
+      toast.error('الحقل فارغ');
+      return false; 
     }
-    return true; // All fields are filled, return true
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      toast.error('البريد الالكتروني غير صالح');
+      return false; 
+    }
+
+    return true; 
   };
 
   const navigate = useNavigate()
@@ -142,10 +150,11 @@ function Login() {
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3> البريد الالكتروني</h3>
               <input
-                type="text"
+                type="email"
                 className="sm:w-[20rem] w-[15rem] rounded-lg border-2 border-green-300 text-gray-700 p-2"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="flex flex-wrap justify-center gap-5">
@@ -183,7 +192,7 @@ function Login() {
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3>كلمة المرور</h3>
               <input
-                type="text"
+                type="password"
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
                 className="sm:w-[20rem] w-[15rem] rounded-lg border-2 border-green-300 text-gray-700 p-2"
@@ -192,7 +201,7 @@ function Login() {
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3> تاكيد كلمة المرور</h3>
               <input
-                type="text"
+                type="password"
                 value={verify}
                 onChange={(e)=>setVerify(e.target.value)}
                 className="sm:w-[20rem] w-[15rem] rounded-lg border-2 border-green-300 text-gray-700 p-2"

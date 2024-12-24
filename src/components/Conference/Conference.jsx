@@ -96,9 +96,9 @@ export default function Conference({ title, subtitle, conferences, openPopup }) 
       <Slider ref={sliderRef} {...settings}>
         {conferences.map((conference) => (
           <div className="flex justify-center w-full z-10" key={conference.id}>
-            <div className="w-[80%] flex flex-col mx-auto p-4 cursor-pointer border border-green-400 rounded-2xl transition-all hover:bg-green-400">
+            <div className="w-[80%] h-[600px]  flex flex-col mx-auto p-4 cursor-pointer border border-green-400 rounded-2xl transition-all hover:bg-green-400">
               <img
-                className="w-full h-auto rounded-xl"
+                className="w-full h-1/2 rounded-xl"
                 src={conference.image}
                 alt={conference.title}
                 loading = 'lazy'
