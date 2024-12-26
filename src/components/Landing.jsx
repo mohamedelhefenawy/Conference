@@ -21,7 +21,7 @@ function Landing({ closePopupSearch, popSearch }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://events-back.cowdly.com/api/events/",
+        "https:events-back.cowdly.com/api/events/",
         {
           headers: {
             accept: "application/json",
@@ -76,81 +76,32 @@ function Landing({ closePopupSearch, popSearch }) {
     fetchData();
   }, [token]);
 
-  // {
-  //   id: data.id,
-  //   title: data.name,
-  //   image: data.image,
-  //   start: data.start_date,
-  //   end: data.start_date,
-  //   hour_start :'12:30 PM',
-  //   hour_end:'5 PM',
-  //   location: data.location,
-  //   link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-  //   isEnded: data.has_ended,
-  // },
-  // {
-  //   id: data.id,
-  //   title: data.name,
-  //   image: data.image,
-  //   start: data.start_date,
-  //   end: data.start_date,
-  //   hour_start :'12:30 PM',
-  //   hour_end:'5 PM',
-  //   location: data.location,
-  //   link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-  //   isEnded: data.has_ended,
-  // },
-  // {
-  //   id: data.id,
-  //   title: data.name,
-  //   image: data.image,
-  //   start: data.start_date,
-  //   end: data.start_date,
-  //   hour_start :'12:30 PM',
-  //   hour_end:'5 PM',
-  //   location: data.location,
-  //   link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-  //   isEnded: data.has_ended,
-  // },
+  
 
-  // const conferenceDataAll = [
-  //   {
-  //     id: data.id,
-  //     title: data.name,
-  //     image: data.image,
-  //     start: data.start_date,
-  //     end: data.start_date,
-  //     hour_start :'12:30 PM',
-  //     hour_end:'5 PM',
-  //     location: data.location,
-  //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-  //     isEnded: data.has_ended,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "مؤتمر ",
-  //     image: photo,
-  //     start: "01/10/2024",
-  //     end: "01/11/2024",
-  //     hour_start :'12:30 PM',
-  //     hour_end:'5 PM',
-  //     location: "جدة",
-  //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-  //     isEnded: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "مؤتمر ",
-  //     image: photo,
-  //     start: "01/09/2024",
-  //     end: "01/10/2024",
-  //     hour_start :'12:30 PM',
-  //     hour_end:'5 PM',
-  //     location: "جدة",
-  //     link:'https://maps.app.goo.gl/jo2Ck77Z437EiLUe7',
-  //     isEnded: false,
-  //   },
-  // ];
+
+  const [filterconference , setFilterConference] = useState([])
+
+  const handle_search =(query = "")=>{
+    event.preventDefault()
+
+    const filteredConferences = conferenceData.filter(
+      (conf) => (query && conf.location.includes(query) )|| ( query&& conf.title.includes(query))
+    );
+    setFilterConference(filteredConferences)
+    return filteredConferences;
+
+
+  }
+
+  const [query , setQuery]=useState('')
+
+
+
+
+
+
+
+
 
   const conferenceDataEnd = [
     {
@@ -337,7 +288,7 @@ function Landing({ closePopupSearch, popSearch }) {
               <XCircle
                 size={25}
                 className="text-gray-400 cursor-pointer hover:text-gray-800 ease-linear duration-150 hover:scale-105"
-                onClick={closePopupSearch}
+                onClick={()=>{closePopupSearch();setQuery('') ;setFilterConference([])}}
               />
             </div>
 
@@ -346,11 +297,18 @@ function Landing({ closePopupSearch, popSearch }) {
               <button
                 type="submit"
                 className="bg-green-600 text-white p-3 rounded-l-lg"
+                onClick={()=>handle_search(query)}
               >
                 <MagnifyingGlass size={20} />
               </button>
               <input
                 type="text"
+                id="searchInput"
+                value={query}
+                onChange={(e) => {
+    setQuery(e.target.value); 
+    handle_search(e.target.value);
+  }}
                 placeholder="اكتب ما تريد البحث عنه"
                 className="border border-gray-300 rounded-r-lg py-2 px-4 w-full outline-none"
                 required
@@ -364,9 +322,9 @@ function Landing({ closePopupSearch, popSearch }) {
               onClick={() => setShowAdvancedSearch((prev) => !prev)} // Toggle البحث المتقدم
             >
               <span>البحث المتقدم</span>
-            </div>
+            </div> 
 
-            {showAdvancedSearch && (
+             {showAdvancedSearch && (
               <div className="mb-6">
                 <div className="flex flex-col gap-4">
                   <input
@@ -388,6 +346,65 @@ function Landing({ closePopupSearch, popSearch }) {
                 </div>
               </div>
             )} */}
+            <div className="border-2 border-green-400 rounded-xl flex-col px-5 py-2 mb-2 overflow-auto h-40">
+  {filterconference.length > 0 ? (
+    filterconference.map((conf) => (
+      <div
+        key={conf.id}
+        className="flex bg-white gap-5 items-center px-4 py-2 rounded-xl hover:bg-green-400 w-full duration-300 ease mb-3"
+      >
+        <img src={conf.image} alt={conf.title} className="w-10 h-10" />
+        <div>
+        <h5>{conf.title}</h5>
+        <h5>{conf.location}</h5>
+        </div>
+        <button onClick={() => navigate("/login")}
+      className="px-6 bg-green-300 text-black font-medium hover:text-white py-2 rounded-lg hover:bg-green-500 transition">
+        حجز
+        </button>
+      </div>
+    ))
+  ) : (
+    <p className="text-center text-gray-500">لا توجد نتائج مطابقة.</p>
+  )}
+</div>
+
+           
+            {/* <div className="border-2 border-green-400 rounded-xl flex-col px-5 py-2 mb-2 overflow-auto h-40	">
+             <div className="flex bg-white gap-5  items-center px-4 py-2  rounded-xl hover:bg-green-400 w-fit duration-300 ease mb-3">
+               <img src={photo}alt="" className="w-10 h-10" />
+               <h5>mohamed</h5>
+               <h5>hamed</h5>
+             </div>
+             <div className="flex bg-white gap-5  items-center px-4 py-2 rounded-xl hover:bg-green-400 w-fit duration-300 ease mb-3">
+               <img src={photo}alt="" className="w-10 h-10" />
+               <h5>mohamed</h5>
+               <h5>hamed</h5>
+             </div>
+             <div className="flex bg-white gap-5  items-center px-4 py-2 rounded-xl hover:bg-green-400 w-fit duration-300 ease mb-3">
+               <img src={photo}alt="" className="w-10 h-10" />
+               <h5>mohamed</h5>
+               <h5>hamed</h5>
+             </div>
+             <div className="flex bg-white gap-5  items-center px-4 py-2 rounded-xl hover:bg-green-400 w-fit duration-300 ease mb-3">
+               <img src={photo}alt="" className="w-10 h-10" />
+               <h5>mohamed</h5>
+               <h5>hamed</h5>
+             </div>
+             <div className="flex bg-white gap-5  items-center px-4 py-2 rounded-xl hover:bg-green-400 w-fit duration-300 ease mb-3">
+               <img src={photo}alt="" className="w-10 h-10" />
+               <h5>mohamed</h5>
+               <h5>hamed</h5>
+             </div>
+             <div className="flex bg-white gap-5  items-center px-4 py-2 rounded-xl hover:bg-green-400 w-fit duration-300 ease mb-3">
+   <img src={photo}alt="" className="w-10 h-10" />
+               <h5>mohamed</h5>
+               <h5>hamed</h5>
+             </div>
+             </div> */}
+
+     
+
 
             {/* الكلمات الأكثر بحثًا */}
             <div>
