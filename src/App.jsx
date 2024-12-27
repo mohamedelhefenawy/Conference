@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Landing from "./components/Landing";
+import Landing from "./components/landing/Landing";
 import Login from "./components/Login/Login";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";

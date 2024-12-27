@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import Navbar from "./Navbar/Navbar";
-import Home from "./Home/Home";
-import About from "./About/About";
-import Conference from "./Conference/Conference";
-import Contact from "./Contact/Contact";
-import Footer from "./Footer/Footer";
-import Ended from "./Ended/Ended";
-import Allcons from "./allcons/Allcons";
-import photo from "../assets/images/conference.jpg";
+import Navbar from "../Navbar/Navbar";
+import Home from "../Home/Home";
+import About from "../About/About";
+import Conference from "../Conference/Conference";
+import Contact from "../Contact/Contact";
+import Footer from "../Footer/Footer";
+import Ended from "../Ended/Ended";
+import Allcons from "../allcons/Allcons";
+import photo from "../../assets/images/conference.jpg";
 import { useNavigate } from "react-router-dom";
 import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
-import Comment from "./comment/Comment";
+import Comment from "../comment/Comment";
 import axios from "axios";
+import '../landing/Landing.css'
 
 function Landing({ closePopupSearch, popSearch }) {
   const [line, useline] = useState("#home");
@@ -80,10 +81,8 @@ function Landing({ closePopupSearch, popSearch }) {
 
 
   const [filterconference , setFilterConference] = useState([])
-
   const handle_search =(query = "")=>{
     event.preventDefault()
-
     const filteredConferences = conferenceData.filter(
       (conf) => (query && conf.location.includes(query) )|| ( query&& conf.title.includes(query))
     );
@@ -346,28 +345,38 @@ function Landing({ closePopupSearch, popSearch }) {
                 </div>
               </div>
             )} */}
-            <div className="border-2 border-green-400 rounded-xl flex-col px-5 py-2 mb-2 overflow-auto h-40">
+
+            {query.length>0&&
+            <div className="name border-2  rounded-xl flex-col px-5 py-2 mb-2 overflow-scroll md:overflow-auto h-40">
   {filterconference.length > 0 ? (
     filterconference.map((conf) => (
       <div
         key={conf.id}
-        className="flex bg-white gap-5 items-center px-4 py-2 rounded-xl hover:bg-green-400 w-full duration-300 ease mb-3"
+        className="flex bg-gray-600 text-white hover:text-gray-800  justify-evenly items-center px-4 py-2 rounded-xl hover:bg-green-200 w-full duration-300 ease mb-3"
       >
-        <img src={conf.image} alt={conf.title} className="w-10 h-10" />
-        <div>
-        <h5>{conf.title}</h5>
-        <h5>{conf.location}</h5>
+        <img src={conf.image} alt={conf.title} className="md:w-20 md:h-20 w-10 h-10" />
+        <div className="mx-4">
+        <h5 className="font-bold mb-4 md:text-xl text-xs">{conf.title}</h5>
+        <h5 className="text-xs md:text-lg">{conf.location}</h5>
         </div>
+        <div className="flex flex-col justify-between gap-2">
+          <div className="flex flex-wrap">
+          <p className=" text-xs ">البداية  :  </p>
+          <p className=" text-xs ">{conf.start}</p>
+          </div>
+         
         <button onClick={() => navigate("/login")}
-      className="px-6 bg-green-300 text-black font-medium hover:text-white py-2 rounded-lg hover:bg-green-500 transition">
+      className="md:px-6 px-2 py-1 bg-green-300 text-black font-medium hover:text-white md:py-2 rounded-lg hover:bg-green-500 transition">
         حجز
         </button>
+        </div>
       </div>
     ))
   ) : (
     <p className="text-center text-gray-500">لا توجد نتائج مطابقة.</p>
   )}
 </div>
+}
 
            
             {/* <div className="border-2 border-green-400 rounded-xl flex-col px-5 py-2 mb-2 overflow-auto h-40	">
