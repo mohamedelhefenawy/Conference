@@ -201,7 +201,7 @@ function Landing({ closePopupSearch, popSearch }) {
       />
 
       {pop && (
-        <div className="fixed z-20 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center ">
+        <div className="fixed z-20 top-10 inset-0 bg-black bg-opacity-[50%] flex justify-center items-center ">
           <div className="bg-white py-12 px-7 rounded-lg z-20 w-full md:w-2/3 ">
             <h2 className="text-2xl font-bold text-green-700 mb-4">
               تفاصيل المؤتمر
@@ -209,7 +209,7 @@ function Landing({ closePopupSearch, popSearch }) {
             <div className="grid md:grid-cols-2 gap-6 items-center relative">
               <div>
                 <img
-                  className="w-[50%] h-[200px] md:w-[75%]  rounded-xl"
+                  className="w-[25%] h-[25%]  md:w-[75%] md:h-[75%]  rounded-xl"
                   src={selectedConference.image}
                   alt={selectedConference.title}
                 />
@@ -347,7 +347,7 @@ function Landing({ closePopupSearch, popSearch }) {
             )} */}
 
             {query.length>0&&
-            <div className="name border-2  rounded-xl flex-col px-5 py-2 mb-2 overflow-scroll md:overflow-auto h-40">
+            <div className="name border-2  rounded-xl flex-col px-5 py-2 mb-2 overflow-scroll md:overflow-auto h-[11rem] md:h-40">
   {filterconference.length > 0 ? (
     filterconference.map((conf) => (
       <div
@@ -416,6 +416,7 @@ function Landing({ closePopupSearch, popSearch }) {
 
 
             {/* الكلمات الأكثر بحثًا */}
+            {query.length ===0 &&
             <div>
               <h3 className="text-xl font-bold text-gray-700 mb-4 text-right">
                 الكلمات الأعلى بحثًا
@@ -447,6 +448,7 @@ function Landing({ closePopupSearch, popSearch }) {
                 </button>
               </div>
             </div>
+}
           </form>
         </div>
       )}

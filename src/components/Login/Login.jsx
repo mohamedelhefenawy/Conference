@@ -106,7 +106,7 @@ function Login() {
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3>كلمة المرور</h3>
               <input
-                type="text"
+                type="password"
                 value={logpassword}
                 onChange={(e)=>setLogpassword(e.target.value)}
                 className="sm:w-[20rem] w-[15rem] rounded-lg border-2 border-green-300 text-gray-700 p-2"
