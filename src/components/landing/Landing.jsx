@@ -22,7 +22,7 @@ function Landing({ closePopupSearch, popSearch }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https:events-back.cowdly.com/api/events/",
+        "https://events-back.cowdly.com/api/events/",
         {
           headers: {
             accept: "application/json",
