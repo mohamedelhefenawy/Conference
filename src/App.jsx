@@ -3,6 +3,7 @@ import Landing from "./components/landing/Landing";
 import Login from "./components/Login/Login";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Signup from "./pages/signup/Signup";
 
 function App() {
   const [line, useline] = useState("#home");
@@ -25,6 +26,7 @@ function App() {
         useline={useline}
         openPopupSearch={openPopupSearch}
       ></Navbar>
+      {/* <Signup></Signup> */}
       <Routes>
         {/* Auth Pages */}
         <Route path={`/login`} element={<Login />} />
@@ -37,6 +39,7 @@ function App() {
             />
           }
         />
+        {/* <Route element ={<Signup/>} path="/signup/*" /> */}
       </Routes>
     </div>
   );

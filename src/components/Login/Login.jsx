@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer, toast } from 'react-toastify';
-
+import axios from 'axios'
+import CryptoJS from 'crypto-js'
 function Login() {
   const [create, setCreate] = useState(true);
   const [cont, setContinue] = useState(true);
@@ -22,6 +23,8 @@ function Login() {
       toast.error('الحقل فارغ');
       return false; 
     }
+
+
 
     // Email validation
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -47,6 +50,84 @@ function Login() {
     return true;
      // All fields are filled, return true
   };
+
+// Token
+
+
+
+
+
+  // Sign up
+  const register = async()=>{
+event.preventDefault()
+    try{
+    const register_data = {
+      'first_name':firstName,
+      'last_name':lastName,
+      'email':email,
+      'password1':password,
+      'password2':verify,
+      'phone_number':phone
+
+  }
+
+  
+    const response = await axios.post('https://events-back.cowdly.com/api/users/register/',register_data)
+
+    const token = response.data.token
+    const secretKey = "s3cr3t$Key@123!";
+    const encryptedtoken = CryptoJS.AES.encrypt(token, secretKey).toString();
+    sessionStorage.setItem('token',encryptedtoken)
+  toast.success('تم انشاء حساب بنجاح')
+  setTimeout(() => {
+    navigate('/')
+  }, 6000);
+  
+
+    }catch(error){
+
+      // toast.error('فشل انشاء حساب , الرجاء المحاولة مرة اخري')
+      console.log(error)
+    }
+
+  }
+
+
+  const login = async()=>{
+try{
+  const login_data = {
+    'email':logemail,
+    'password':logpassword
+  }
+
+  const response = axios.post('https://events-back.cowdly.com/api/users/login/',login_data)
+
+  const token = response.data.token
+  const secretKey = "s3cr3t$Key@123!";
+  const encryptedtoken = CryptoJS.AES.encrypt(token, secretKey).toString();
+  sessionStorage.setItem('token',encryptedtoken)
+toast.success('تم تسجيل الدخول بنجاح')
+setTimeout(() => {
+  navigate('/')
+}, 6000);
+}catch(error){
+
+  toast.error('البريد الالكتروني او كلمة المرور خاطئة')
+  console.log(error)
+}
+  }
+
+  useEffect(() => {
+    const encryptedToken = sessionStorage.getItem('token');
+    if (encryptedToken) {
+      const secretKey = "s3cr3t$Key@123!";
+      const decryptedToken = CryptoJS.AES.decrypt(encryptedToken, secretKey).toString(CryptoJS.enc.Utf8);
+  
+      if (decryptedToken) {
+        navigate('/'); // Navigate to the landing page if a valid token exists
+      }
+    }
+  }, [navigate]);
 
   return (
     <div className="flex w-full min-h-screen max-h-[200vh] mt-20 justify-around items-center bg-gray-100 flex-col lg:flex-row gap-10">
@@ -112,7 +193,7 @@ function Login() {
                 className="sm:w-[20rem] w-[15rem] rounded-lg border-2 border-green-300 text-gray-700 p-2"
               />
             </div>
-            <button className="bg-green-700 w-[10rem] p-3 rounded-lg text-white text-lg hover:bg-green-800 transition">
+            <button onClick={login} className="bg-green-700 w-[10rem] p-3 rounded-lg text-white text-lg hover:bg-green-800 transition">
               تسجيل الدخول
             </button>
             <h5 className="text-gray-800">
@@ -127,7 +208,8 @@ function Login() {
           </div>
         </div>
       ) : cont ? (
-        <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300">
+        <form  className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300">
+        {/* <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300"> */}
           <div className="w-full bg-gray-100 p-8 flex flex-col justify-center items-center gap-6 rounded-lg">
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3>الأسم الاول</h3>
@@ -176,9 +258,11 @@ function Login() {
               </button>
             </div>
           </div>
-        </div>
+        {/* </div> */}
+        </form>
       ) : (
-        <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300">
+        <form onSubmit={register}  className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300">
+        {/* <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300"> */}
           <div className="w-full bg-gray-100 p-8 flex flex-col justify-center items-center gap-6 rounded-lg">
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3>رقم التليفون</h3>
@@ -208,20 +292,21 @@ function Login() {
               />
             </div>
             <div className="flex flex-wrap justify-center gap-5">
-              <button className="bg-green-700 w-[10rem] p-3 rounded-lg text-white text-lg hover:bg-green-800 transition" onClick={()=>{if(validateVerify()){
-                navigate('/')
-              }}}>
+              <button type="submit" className="bg-green-700 w-[10rem] p-3 rounded-lg text-white text-lg hover:bg-green-800 transition" onClick={(e) => {
+    if (validateVerify()) {
+      register(e); }}}>
                 تسجيل
               </button>
               <button
                 className="bg-green-700 w-[10rem] p-3 rounded-lg text-white text-lg hover:bg-green-800 transition"
-                onClick={() => setContinue(true)}
+                onClick={(e) => {e.preventDefault();setContinue(true)}}
               >
                 رجوع
               </button>
             </div>
-          </div>
+          {/* </div> */}
         </div>
+        </form>
       )}
     </div>
   );
