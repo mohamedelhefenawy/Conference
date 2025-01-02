@@ -16,13 +16,16 @@ function Login() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [verify, setVerify] = useState('');
+  const data = {firstName,lastName,email}
 
+  localStorage.setItem('data',JSON.stringify(data))
   // Validation function
   const validateForm = () => {
     if (!firstName || !lastName || !email) {
       toast.error('الحقل فارغ');
       return false; 
     }
+
 
 
 
@@ -60,11 +63,12 @@ function Login() {
   // Sign up
   const register = async()=>{
 event.preventDefault()
+const data = JSON.parse(localStorage.getItem('data'))
     try{
     const register_data = {
-      'first_name':firstName,
-      'last_name':lastName,
-      'email':email,
+      'first_name':data.firstName,
+      'last_name':data.lastName,
+      'email':data.email,
       'password1':password,
       'password2':verify,
       'phone_number':phone
@@ -86,7 +90,7 @@ event.preventDefault()
 
     }catch(error){
 
-      // toast.error('فشل انشاء حساب , الرجاء المحاولة مرة اخري')
+      toast.error('فشل انشاء حساب , الرجاء المحاولة مرة اخري')
       console.log(error)
     }
 
@@ -100,7 +104,7 @@ try{
     'password':logpassword
   }
 
-  const response = axios.post('https://events-back.cowdly.com/api/users/login/',login_data)
+  const response =  await axios.post('https://events-back.cowdly.com/api/users/login/',login_data)
 
   const token = response.data.token
   const secretKey = "s3cr3t$Key@123!";
@@ -208,8 +212,7 @@ setTimeout(() => {
           </div>
         </div>
       ) : cont ? (
-        <form  className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300">
-        {/* <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300"> */}
+         <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300"> 
           <div className="w-full bg-gray-100 p-8 flex flex-col justify-center items-center gap-6 rounded-lg">
             <div className="text-green-700 font-bold flex flex-col items-center gap-2">
               <h3>الأسم الاول</h3>
@@ -258,8 +261,7 @@ setTimeout(() => {
               </button>
             </div>
           </div>
-        {/* </div> */}
-        </form>
+        </div> 
       ) : (
         <form onSubmit={register}  className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300">
         {/* <div className="lg:w-[40%] w-[90%] bg-white rounded-xl p-6 flex justify-center shadow-md hover:shadow-xl transition ease duration-300"> */}
